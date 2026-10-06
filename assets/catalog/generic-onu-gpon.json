@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "generic-onu-gpon",
+  "vendor_id": "generic",
+  "device_type": "onu",
+  "display_name": "通用 GPON ONU（4×GE 光猫）",
+  "product_name": "Generic ONU GPON-4GE",
+  "device_class": "光网络单元（用户端 ONU/光猫）",
+  "os_version": "NOS-ONU 1.0.0",
+  "serial_prefix": "ONU2601",
+  "visual": {
+    "chassis": {
+      "width": 0.22,
+      "height": 0.12,
+      "depth": 0.16,
+      "u_height": 0
+    },
+    "silkscreen": {
+      "brand_line": "SIMLAB ONU",
+      "sub_line": "1×GPON + 4×GE"
+    },
+    "front_panel": {
+      "power_button": true,
+      "console": false,
+      "usb": false,
+      "reset_pinhole": true
+    },
+    "port_layout": [
+      {
+        "group_id": "pon",
+        "kind": "sfp",
+        "label": "1×GPON 上行（SC/APC）",
+        "speed_bps": 10000000000,
+        "poe": false,
+        "naming": {
+          "name_prefix": "GPON0/0/",
+          "short_prefix": "GPON0/0/",
+          "alias_prefix": "gpon0/0/"
+        },
+        "rows": [
+          {
+            "start_index": 1,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "group_id": "lan",
+        "kind": "rj45",
+        "label": "4×GE 用户口",
+        "speed_bps": 1000000000,
+        "poe": false,
+        "naming": {
+          "name_prefix": "GigabitEthernet0/0/",
+          "short_prefix": "GE0/0/",
+          "alias_prefix": "Gi0/0/"
+        },
+        "rows": [
+          {
+            "start_index": 1,
+            "count": 4
+          }
+        ]
+      }
+    ],
+    "leds": {
+      "per_port": 1,
+      "system_label": "PWR",
+      "power_label": "LOS"
+    }
+  },
+  "runtime": {
+    "type": "simulated",
+    "profile": "generic-nos-onu",
+    "capabilities": [
+      "power",
+      "link",
+      "console"
+    ]
+  },
+  "features": [
+    "optical",
+    "gpon",
+    "vlan",
+    "dhcp-client"
+  ],
+  "optical": {
+    "role": "onu",
+    "sensitivity_dbm": -28,
+    "overload_dbm": -8,
+    "splitter_ratio_default": 8,
+    "guaranteed_mbps": 128,
+    "max_mbps": 1024
+  }
+}

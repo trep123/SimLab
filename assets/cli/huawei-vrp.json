@@ -1,0 +1,1345 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "huawei-vrp",
+  "vendor_id": "huawei",
+  "modes": {
+    "user": {
+      "prompt_key": "user",
+      "description": "用户视图",
+      "enter_command": null
+    },
+    "config": {
+      "prompt_key": "config",
+      "description": "系统视图",
+      "enter_command": "system-view"
+    },
+    "interface": {
+      "prompt_key": "interface",
+      "description": "接口视图",
+      "enter_command": "interface {interface}"
+    },
+    "vlan": {
+      "prompt_key": "vlan",
+      "description": "VLAN 视图",
+      "enter_command": "vlan {vlan}"
+    }
+  },
+  "commands": [
+    {
+      "id": "huawei.show.version",
+      "syntax": "display version",
+      "aliases": [
+        "dis ver",
+        "dis version",
+        "display ver"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看系统软件版本与运行时间",
+      "handler": "show_version",
+      "args": [],
+      "output": [
+        "Huawei Versatile Routing Platform Software",
+        "{os_version}",
+        "Copyright (C) 2012-2024 Huawei Technologies Co., Ltd.",
+        "HUAWEI {product_name} uptime is {uptime}",
+        "BKP  version information:",
+        "1. PCB      Version  : VER.B",
+        "2. Board    Type     : {model}",
+        "3. MPU      Type     : MCUD",
+        "4. LPU      Type     : Not Present",
+        "5. MPU Slot Quantity : 1",
+        "6. LPU Slot Quantity : 0",
+        "",
+        "SDRAM: 2048 M bytes, Flash: 1024 M bytes",
+        "MPU version information:",
+        "1. PCB      Version  : VER.B",
+        "2. Board    Type     : {model}",
+        "3. Serial Number     : {serial_number}",
+        "4. MAC Address       : {mac_address}"
+      ]
+    },
+    {
+      "id": "huawei.show.interface_brief",
+      "syntax": "display interface brief",
+      "aliases": [
+        "dis int br",
+        "dis interface br",
+        "display int br"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看所有端口的状态概览",
+      "handler": "show_interface_brief",
+      "args": [
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为全部接口"
+        }
+      ],
+      "output": [
+        "PHY: Physical",
+        "*down: administratively down",
+        "^down: standby",
+        "(l): loopback",
+        "(s): spoofing",
+        "(E): E-Trunk down",
+        "(b): BFD down",
+        "(e): ETHOAM down",
+        "(dl): DLDP down",
+        "(lb): LBDT block",
+        "InUti/OutUti: input utility/output utility",
+        "{interface_brief_table}"
+      ]
+    },
+    {
+      "id": "huawei.show.interface_detail",
+      "syntax": "display interface {interface}",
+      "aliases": [
+        "dis int",
+        "display int"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看指定端口的详细状态",
+      "handler": "show_interface_detail",
+      "args": [
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": true,
+          "help": "接口名称"
+        }
+      ],
+      "output": [
+        "{interface_detail}"
+      ]
+    },
+    {
+      "id": "huawei.show.running_config",
+      "syntax": "display current-configuration",
+      "aliases": [
+        "dis cu",
+        "dis current-config",
+        "display cu"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看当前生效的配置",
+      "handler": "show_running_config",
+      "args": [],
+      "output": [
+        "{running_config}"
+      ]
+    },
+    {
+      "id": "huawei.show.current_view",
+      "syntax": "display this",
+      "aliases": [
+        "dis th",
+        "display th"
+      ],
+      "modes": [
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看当前视图下生效的配置",
+      "handler": "show_current_view",
+      "args": [],
+      "output": [
+        "{current_view_config}"
+      ]
+    },
+    {
+      "id": "huawei.show.vlan",
+      "syntax": "display vlan",
+      "aliases": [
+        "dis vlan",
+        "display vl"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看 VLAN 信息",
+      "handler": "show_vlan",
+      "args": [],
+      "output": [
+        "U: Up;         D: Down;         TG: Tagged;         UT: Untagged;",
+        "MP: Vlan-mapping;               ST: Vlan-stacking;",
+        "#: ProtocolTransparent-vlan;    *: Management-vlan;",
+        "",
+        "{vlan_table}"
+      ]
+    },
+    {
+      "id": "huawei.show.mac_table",
+      "syntax": "display mac-address",
+      "aliases": [
+        "dis mac",
+        "dis mac-address",
+        "display mac"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看 MAC 地址表",
+      "handler": "show_mac_table",
+      "args": [],
+      "output": [
+        "MAC address table of slot 0:",
+        "-------------------------------------------------------------------------------",
+        "{mac_table}",
+        "-------------------------------------------------------------------------------"
+      ]
+    },
+    {
+      "id": "huawei.show.arp",
+      "syntax": "display arp [all]",
+      "aliases": [
+        "dis arp",
+        "dis arp all",
+        "display arp all"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看 ARP 表项",
+      "handler": "show_arp",
+      "args": [],
+      "output": [
+        "-------------------------------------------------------------------------------",
+        "{arp_table}",
+        "-------------------------------------------------------------------------------"
+      ]
+    },
+    {
+      "id": "huawei.show.route",
+      "syntax": "display ip routing-table",
+      "aliases": [
+        "dis ip rout",
+        "dis ip routing-table",
+        "display ip rout"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看 IP 路由表",
+      "handler": "show_route",
+      "args": [],
+      "output": [
+        "Route Flags: R - relay, D - download to fib",
+        "------------------------------------------------------------------------------",
+        "Routing Tables: Public",
+        "",
+        "{route_table}"
+      ]
+    },
+    {
+      "id": "huawei.show.lldp_neighbor",
+      "syntax": "display lldp neighbor brief",
+      "aliases": [
+        "dis lldp ne br",
+        "dis lldp neighbor br",
+        "display lldp ne br"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看 LLDP 邻居摘要",
+      "handler": "show_lldp_neighbor",
+      "args": [],
+      "output": [
+        "{lldp_table}"
+      ]
+    },
+    {
+      "id": "huawei.show.poe",
+      "syntax": "display poe interface",
+      "aliases": [
+        "dis poe int",
+        "display poe int"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看端口 PoE 供电状态",
+      "handler": "show_poe",
+      "args": [],
+      "output": [
+        "{poe_table}"
+      ]
+    },
+    {
+      "id": "huawei.show.counters",
+      "syntax": "display counters inbound interface [{interface}]",
+      "aliases": [
+        "dis counters in int",
+        "display counters in int"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看端口收发计数",
+      "handler": "show_counters",
+      "args": [
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为全部接口"
+        }
+      ],
+      "output": [
+        "{counters_table}"
+      ]
+    },
+    {
+      "id": "huawei.show.log",
+      "syntax": "display logbuffer",
+      "aliases": [
+        "dis logb",
+        "dis logbuffer",
+        "display logb"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看日志缓冲区",
+      "handler": "show_log",
+      "args": [],
+      "output": [
+        "Logging buffer size:  512",
+        "{log_entries}"
+      ]
+    },
+    {
+      "id": "huawei.show.environment",
+      "syntax": "display environment",
+      "aliases": [
+        "dis env",
+        "dis environment",
+        "display env"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看温度、风扇与电源状态",
+      "handler": "show_environment",
+      "args": [],
+      "output": [
+        "System temperature information (degree centigrade):",
+        "-------------------------------------------------------------------------------",
+        "Slot  Sensor                    Temperature    Lower  Upper  State",
+        "-------------------------------------------------------------------------------",
+        "0     CPU                       {temperature}       0      95    Normal",
+        "",
+        "FAN information:",
+        " Fan   Status",
+        " 1     {fan_status}",
+        "",
+        "Power information:",
+        " Power  Status",
+        " 1      {power_status}"
+      ]
+    },
+    {
+      "id": "huawei.mode.system_view",
+      "syntax": "system-view",
+      "aliases": [
+        "sys"
+      ],
+      "modes": [
+        "user"
+      ],
+      "help": "进入系统视图",
+      "handler": "enter_config",
+      "args": [],
+      "next_mode": "config",
+      "output": [
+        "Enter system view, return user view with Ctrl+Z."
+      ]
+    },
+    {
+      "id": "huawei.mode.quit",
+      "syntax": "quit",
+      "aliases": [
+        "q"
+      ],
+      "modes": [
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "退回上一级视图",
+      "handler": "exit_mode",
+      "args": [],
+      "output": []
+    },
+    {
+      "id": "huawei.mode.return",
+      "syntax": "return",
+      "aliases": [
+        "ret"
+      ],
+      "modes": [
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "直接回到用户视图",
+      "handler": "return_root",
+      "args": [],
+      "next_mode": "user",
+      "output": []
+    },
+    {
+      "id": "huawei.config.sysname",
+      "syntax": "sysname {hostname}",
+      "aliases": [],
+      "modes": [
+        "config"
+      ],
+      "help": "修改设备名称",
+      "handler": "set_hostname",
+      "args": [
+        {
+          "name": "hostname",
+          "type": "word",
+          "required": true,
+          "help": "设备名称"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "huawei.mode.interface",
+      "syntax": "interface {interface}",
+      "aliases": [
+        "int"
+      ],
+      "modes": [
+        "config"
+      ],
+      "help": "进入接口视图",
+      "handler": "enter_interface",
+      "args": [
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": true,
+          "help": "接口名称"
+        }
+      ],
+      "next_mode": "interface",
+      "output": []
+    },
+    {
+      "id": "huawei.mode.vlan",
+      "syntax": "vlan {vlan}",
+      "aliases": [
+        "vl"
+      ],
+      "modes": [
+        "config"
+      ],
+      "help": "创建并进入 VLAN 视图",
+      "handler": "enter_vlan",
+      "args": [
+        {
+          "name": "vlan",
+          "type": "vlan",
+          "required": true,
+          "help": "VLAN 编号（1-4094）"
+        }
+      ],
+      "next_mode": "vlan",
+      "output": []
+    },
+    {
+      "id": "huawei.port.shutdown",
+      "syntax": "shutdown",
+      "aliases": [
+        "sh"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "关闭端口",
+      "handler": "set_shutdown",
+      "args": [
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "huawei.port.undo_shutdown",
+      "syntax": "undo shutdown",
+      "aliases": [
+        "undo sh"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "打开端口",
+      "handler": "set_no_shutdown",
+      "args": [
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "huawei.port.speed",
+      "syntax": "speed {speed}",
+      "aliases": [
+        "spe"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "设置端口速率",
+      "handler": "set_speed",
+      "args": [
+        {
+          "name": "speed",
+          "type": "speed",
+          "required": true,
+          "help": "速率：10/100/1000/auto"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "huawei.port.duplex",
+      "syntax": "duplex {duplex}",
+      "aliases": [
+        "dup"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "设置端口双工模式",
+      "handler": "set_duplex",
+      "args": [
+        {
+          "name": "duplex",
+          "type": "enum",
+          "values": [
+            "full",
+            "half",
+            "auto"
+          ],
+          "required": true,
+          "help": "双工模式"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "huawei.port.link_type",
+      "syntax": "port link-type {mode}",
+      "aliases": [
+        "port link-t"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "设置端口链路类型（access/trunk/hybrid）",
+      "handler": "set_port_mode",
+      "args": [
+        {
+          "name": "mode",
+          "type": "enum",
+          "values": [
+            "access",
+            "trunk",
+            "hybrid"
+          ],
+          "required": true,
+          "help": "端口模式"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "huawei.port.default_vlan",
+      "syntax": "port default vlan {vlan}",
+      "aliases": [
+        "port default v"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "把端口加入指定 VLAN（access）",
+      "handler": "set_port_vlan",
+      "args": [
+        {
+          "name": "vlan",
+          "type": "vlan",
+          "required": true,
+          "help": "VLAN 编号（1-4094）"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "huawei.port.trunk_allow_pass",
+      "syntax": "port trunk allow-pass vlan {vlan}",
+      "aliases": [
+        "port trunk allow-pass v"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "配置 Trunk 端口允许通过的 VLAN",
+      "handler": "set_port_vlan",
+      "args": [
+        {
+          "name": "vlan",
+          "type": "vlan",
+          "required": true,
+          "help": "VLAN 编号（1-4094）"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "huawei.port.description",
+      "syntax": "description {description}",
+      "aliases": [
+        "desc"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "配置端口描述",
+      "handler": "set_port_description",
+      "args": [
+        {
+          "name": "description",
+          "type": "word",
+          "required": true,
+          "help": "端口描述文本"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "huawei.port.poe_enable",
+      "syntax": "poe enable",
+      "aliases": [
+        "poe en"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "使能端口 PoE 供电",
+      "handler": "set_port_poe",
+      "args": [
+        {
+          "name": "state",
+          "type": "enum",
+          "values": [
+            "enable"
+          ],
+          "required": false,
+          "help": "PoE 开关状态"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "huawei.port.poe_disable",
+      "syntax": "undo poe enable",
+      "aliases": [
+        "undo poe en"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "关闭端口 PoE 供电",
+      "handler": "set_port_poe",
+      "args": [
+        {
+          "name": "state",
+          "type": "enum",
+          "values": [
+            "disable"
+          ],
+          "required": false,
+          "help": "PoE 开关状态"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "huawei.port.ip_address",
+      "syntax": "ip address {prefix}",
+      "aliases": [
+        "ip add"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "配置接口 IP 地址",
+      "handler": "set_ip_address",
+      "args": [
+        {
+          "name": "prefix",
+          "type": "prefix",
+          "required": true,
+          "help": "IP 地址/掩码长度"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "huawei.port.clear_counters",
+      "syntax": "reset counters interface [{interface}]",
+      "aliases": [
+        "reset counters int"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "清空端口计数",
+      "handler": "clear_counters",
+      "args": [
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为全部接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "huawei.net.ping",
+      "syntax": "ping [-c {count}] {ipv4}",
+      "aliases": [
+        "pi"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "测试到目标地址的连通性",
+      "handler": "ping",
+      "args": [
+        {
+          "name": "ipv4",
+          "type": "ipv4",
+          "required": true,
+          "help": "目标 IPv4 地址"
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "required": false,
+          "help": "发送报文个数，缺省为 5"
+        }
+      ],
+      "output": [
+        "PING {ipv4}: 56 data bytes, press CTRL_C to break",
+        "{ping_result}"
+      ]
+    },
+    {
+      "id": "huawei.cfg.save",
+      "syntax": "save",
+      "aliases": [
+        "sav"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "保存当前配置",
+      "handler": "save_config",
+      "args": [],
+      "confirm": "save",
+      "output": [
+        "The current configuration will be written to the device."
+      ]
+    },
+    {
+      "id": "huawei.sys.reboot",
+      "syntax": "reboot",
+      "aliases": [
+        "reb"
+      ],
+      "modes": [
+        "user",
+        "config"
+      ],
+      "help": "重启设备",
+      "handler": "reboot",
+      "args": [],
+      "confirm": "reboot",
+      "output": []
+    },
+    {
+      "id": "huawei.sys.factory_reset",
+      "syntax": "reset saved-configuration",
+      "aliases": [
+        "reset saved-config"
+      ],
+      "modes": [
+        "user",
+        "config"
+      ],
+      "help": "恢复出厂配置",
+      "handler": "factory_reset",
+      "args": [],
+      "confirm": "factory_reset",
+      "output": [
+        "Warning: The action will delete the saved configuration in the device.",
+        "The configuration will be erased to reconfigure. Continue? [Y/N]:"
+      ]
+    },
+    {
+      "id": "huawei.help.question",
+      "syntax": "?",
+      "aliases": [],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "显示当前模式下可用命令",
+      "handler": "show_help",
+      "args": [],
+      "output": [
+        "{help_text}"
+      ],
+      "hidden": true
+    },
+    {
+      "id": "huawei.help.help",
+      "syntax": "help",
+      "aliases": [
+        "he"
+      ],
+      "modes": [
+        "user",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "显示当前模式下可用命令",
+      "handler": "show_help",
+      "args": [],
+      "output": [
+        "{help_text}"
+      ]
+    }
+  ],
+  "status_text": {
+    "phy_up": "up",
+    "phy_down": "down",
+    "phy_admin_down": "*down",
+    "protocol_up": "up",
+    "protocol_down": "down",
+    "speed": {
+      "10": "10M",
+      "100": "100M",
+      "1000": "1G",
+      "10000": "10G",
+      "auto": "auto"
+    },
+    "duplex": {
+      "full": "full",
+      "half": "half",
+      "auto": "auto"
+    },
+    "type": {
+      "rj45": "10/100/1000BASE-T",
+      "sfp": "10GBASE-SR"
+    },
+    "poe": {
+      "enabled": "Enabled",
+      "disabled": "Disabled"
+    },
+    "vlan_untagged": "Untagged",
+    "vlan_tagged": "Tagged"
+  },
+  "tables": {
+    "interface_brief_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "short_name",
+          "header": "Interface",
+          "width": 28,
+          "align": "left"
+        },
+        {
+          "key": "phy_text",
+          "header": "PHY",
+          "width": 6,
+          "align": "left"
+        },
+        {
+          "key": "protocol_text",
+          "header": "Protocol",
+          "width": 9,
+          "align": "left"
+        },
+        {
+          "key": "in_uti",
+          "header": "InUti",
+          "width": 7,
+          "align": "right"
+        },
+        {
+          "key": "out_uti",
+          "header": "OutUti",
+          "width": 7,
+          "align": "right"
+        },
+        {
+          "key": "in_errors",
+          "header": "inErrors",
+          "width": 10,
+          "align": "right"
+        },
+        {
+          "key": "out_errors",
+          "header": "outErrors",
+          "width": 10,
+          "align": "right"
+        }
+      ],
+      "empty_text": "--"
+    },
+    "vlan_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "vlan_id",
+          "header": "VID",
+          "width": 5,
+          "align": "left"
+        },
+        {
+          "key": "status_text",
+          "header": "Type",
+          "width": 8,
+          "align": "left"
+        },
+        {
+          "key": "member_ports",
+          "header": "Ports",
+          "width": 60,
+          "align": "left"
+        }
+      ],
+      "empty_text": "--"
+    },
+    "mac_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "mac_address",
+          "header": "MAC Address",
+          "width": 15,
+          "align": "left"
+        },
+        {
+          "key": "vlan_id",
+          "header": "VLAN",
+          "width": 6,
+          "align": "left"
+        },
+        {
+          "key": "type_text",
+          "header": "Type",
+          "width": 10,
+          "align": "left"
+        },
+        {
+          "key": "port_name",
+          "header": "Port",
+          "width": 16,
+          "align": "left"
+        },
+        {
+          "key": "age_text",
+          "header": "Age",
+          "width": 8,
+          "align": "left"
+        }
+      ],
+      "empty_text": "--"
+    },
+    "arp_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "ip_address",
+          "header": "IP Address",
+          "width": 16,
+          "align": "left"
+        },
+        {
+          "key": "mac_address",
+          "header": "MAC Address",
+          "width": 17,
+          "align": "left"
+        },
+        {
+          "key": "expire_text",
+          "header": "Expire",
+          "width": 8,
+          "align": "left"
+        },
+        {
+          "key": "type_text",
+          "header": "Type",
+          "width": 8,
+          "align": "left"
+        },
+        {
+          "key": "interface",
+          "header": "Interface",
+          "width": 16,
+          "align": "left"
+        }
+      ],
+      "empty_text": "--"
+    },
+    "route_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "destination",
+          "header": "Destination",
+          "width": 16,
+          "align": "left"
+        },
+        {
+          "key": "mask",
+          "header": "Mask",
+          "width": 16,
+          "align": "left"
+        },
+        {
+          "key": "protocol_text",
+          "header": "Proto",
+          "width": 8,
+          "align": "left"
+        },
+        {
+          "key": "preference",
+          "header": "Pre",
+          "width": 5,
+          "align": "right"
+        },
+        {
+          "key": "nexthop",
+          "header": "NextHop",
+          "width": 16,
+          "align": "left"
+        },
+        {
+          "key": "interface",
+          "header": "Interface",
+          "width": 16,
+          "align": "left"
+        }
+      ],
+      "empty_text": "--"
+    },
+    "lldp_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "system_name",
+          "header": "System Name",
+          "width": 20,
+          "align": "left"
+        },
+        {
+          "key": "chassis_id",
+          "header": "Chassis ID",
+          "width": 20,
+          "align": "left"
+        },
+        {
+          "key": "port_id",
+          "header": "Port ID",
+          "width": 16,
+          "align": "left"
+        },
+        {
+          "key": "ttl",
+          "header": "TTL",
+          "width": 6,
+          "align": "right"
+        },
+        {
+          "key": "capability",
+          "header": "Capability",
+          "width": 12,
+          "align": "left"
+        }
+      ],
+      "empty_text": "--"
+    },
+    "poe_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "short_name",
+          "header": "Port",
+          "width": 16,
+          "align": "left"
+        },
+        {
+          "key": "poe_text",
+          "header": "Admin",
+          "width": 10,
+          "align": "left"
+        },
+        {
+          "key": "power_text",
+          "header": "Power(W)",
+          "width": 10,
+          "align": "right"
+        },
+        {
+          "key": "current_text",
+          "header": "Current(mA)",
+          "width": 12,
+          "align": "right"
+        },
+        {
+          "key": "voltage_text",
+          "header": "Voltage(V)",
+          "width": 11,
+          "align": "right"
+        },
+        {
+          "key": "class_text",
+          "header": "Class",
+          "width": 7,
+          "align": "left"
+        }
+      ],
+      "empty_text": "--"
+    },
+    "counters_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "short_name",
+          "header": "Interface",
+          "width": 20,
+          "align": "left"
+        },
+        {
+          "key": "rx_pkts",
+          "header": "InPackets",
+          "width": 12,
+          "align": "right"
+        },
+        {
+          "key": "tx_pkts",
+          "header": "OutPackets",
+          "width": 12,
+          "align": "right"
+        },
+        {
+          "key": "in_errors",
+          "header": "InErrors",
+          "width": 10,
+          "align": "right"
+        },
+        {
+          "key": "out_errors",
+          "header": "OutErrors",
+          "width": 10,
+          "align": "right"
+        },
+        {
+          "key": "crc",
+          "header": "CRC",
+          "width": 8,
+          "align": "right"
+        }
+      ],
+      "empty_text": "--"
+    }
+  },
+  "phrases": {
+    "mode": {
+      "access": "port link-type access",
+      "trunk": "port link-type trunk"
+    },
+    "access_vlan": "port default vlan {vlan}",
+    "trunk_vlans": "port trunk allow-pass vlan {vlans}",
+    "ip_address": "ip address {ip} {mask}",
+    "poe_on": "poe enable",
+    "no_shutdown": "undo shutdown",
+    "shutdown": "shutdown"
+  },
+  "config_render": {
+    "header": [
+      "#",
+      "!Software Version {os_version}",
+      "!Last configuration was updated at {now}",
+      "#",
+      " sysname {hostname}",
+      "#"
+    ],
+    "vlan": [
+      "vlan {vlan}",
+      " description {vlan_description}",
+      " quit"
+    ],
+    "vlan_interface": [
+      "interface Vlanif{vlan}",
+      " ip address {ip} {mask}",
+      " quit"
+    ],
+    "interface": [
+      "interface {interface}",
+      " {mode_phrase}",
+      "?description  description {description}",
+      " {vlan_phrase}",
+      "?ip  {ip_phrase}",
+      "?poe  {poe_phrase}",
+      " {shutdown_phrase}",
+      " quit"
+    ],
+    "footer": [
+      "#",
+      "return"
+    ]
+  },
+  "text_templates": {
+    "ping_result": [
+      "PING {ip}: 56 data bytes, press CTRL_C to break",
+      "    Reply from {ip}: bytes={bytes} Sequence={seq} ttl={ttl} time={rtt} ms"
+    ],
+    "log_prefix": "%{date} {hostname} "
+  }
+}

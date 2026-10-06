@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "cisco-isr4331",
+  "vendor_id": "cisco",
+  "device_type": "router",
+  "display_name": "思科 ISR4331",
+  "product_name": "ISR4331/K9",
+  "device_class": "企业分支路由器",
+  "os_version": "IOS 15.2(4)E7",
+  "serial_prefix": "FDO23",
+  "visual": {
+    "chassis": { "width": 4.42, "height": 0.44, "depth": 2.60, "u_height": 1 },
+    "silkscreen": { "brand_line": "CISCO ISR4331", "sub_line": "3×GE + NIM 扩展插槽" },
+    "front_panel": { "power_button": true, "console": "RJ45/Mini-USB", "usb": true, "reset_pinhole": false, "mode_button": false },
+    "port_layout": [
+      {
+        "group_id": "ge",
+        "kind": "rj45",
+        "label": "3×GE 路由口",
+        "speed_bps": 1000000000,
+        "poe": false,
+        "naming": { "name_prefix": "GigabitEthernet0/0/", "short_prefix": "Gi0/0/", "alias_prefix": "GigabitEthernet0/0/" },
+        "rows": [ { "start_index": 0, "count": 3 } ]
+      }
+    ],
+    "leds": { "per_port": 1, "system_label": "SYST", "power_label": "PWR", "speed_label": "SPD" },
+    "airflow": "side-to-side"
+  },
+  "port_overrides": [
+    { "short_name": "Gi0/0/2", "note": "整机含 2 个 NIM 扩展插槽，当前未安装模块" }
+  ],
+  "runtime": {
+    "type": "simulated",
+    "profile": "cisco-ios-router",
+    "capabilities": ["power", "link", "console", "cold_snapshot"]
+  },
+  "features": ["static-route", "ospf", "bgp", "nat", "dhcp-server", "acl", "vpn", "qos"]
+}

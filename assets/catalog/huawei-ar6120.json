@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "huawei-ar6120",
+  "vendor_id": "huawei",
+  "device_type": "router",
+  "display_name": "华为 AR6120",
+  "product_name": "NetEngine AR6120",
+  "device_class": "企业分支路由器",
+  "os_version": "VRP V200R019C10SPC500",
+  "serial_prefix": "210235",
+  "visual": {
+    "chassis": { "width": 3.20, "height": 0.44, "depth": 2.20, "u_height": 0 },
+    "silkscreen": { "brand_line": "HUAWEI AR6120", "sub_line": "2×GE Combo WAN + 8×GE LAN + USB" },
+    "front_panel": { "power_button": true, "console": "RJ45", "usb": true, "reset_pinhole": true, "mode_button": false },
+    "port_layout": [
+      {
+        "group_id": "wan",
+        "kind": "combo",
+        "label": "2×GE Combo WAN（光电复用）",
+        "speed_bps": 1000000000,
+        "poe": false,
+        "naming": { "name_prefix": "GigabitEthernet0/0/", "short_prefix": "GE0/0/", "alias_prefix": "Gi0/0/" },
+        "rows": [ { "start_index": 0, "count": 2 } ]
+      },
+      {
+        "group_id": "lan",
+        "kind": "rj45",
+        "label": "8×GE LAN",
+        "speed_bps": 1000000000,
+        "poe": false,
+        "naming": { "name_prefix": "GigabitEthernet0/0/", "short_prefix": "GE0/0/", "alias_prefix": "Gi0/0/" },
+        "rows": [ { "start_index": 2, "count": 8 } ]
+      }
+    ],
+    "leds": { "per_port": 1, "system_label": "SYS", "power_label": "PWR", "speed_label": "SPED" },
+    "airflow": "passive"
+  },
+  "port_overrides": [
+    { "short_name": "GE0/0/0", "note": "GE Combo WAN 口，RJ45 与 SFP 光电复用" },
+    { "short_name": "GE0/0/1", "note": "GE Combo WAN 口，RJ45 与 SFP 光电复用" }
+  ],
+  "runtime": {
+    "type": "simulated",
+    "profile": "huawei-vrp-router",
+    "capabilities": ["power", "link", "console", "cold_snapshot", "vlan"]
+  },
+  "features": ["vlan", "static-route", "ospf", "bgp", "nat", "dhcp-server", "acl", "vpn"]
+}

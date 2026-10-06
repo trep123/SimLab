@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "ruijie-rg-s2910-24gt4xs",
+  "vendor_id": "ruijie",
+  "device_type": "switch",
+  "display_name": "锐捷 RG-S2910-24GT4XS",
+  "product_name": "RG-S2910-24GT4XS",
+  "device_class": "千兆接入交换机",
+  "os_version": "RGOS 11.4(1)B70P1",
+  "serial_prefix": "221800",
+  "visual": {
+    "chassis": { "width": 4.42, "height": 0.44, "depth": 2.20, "u_height": 1 },
+    "silkscreen": { "brand_line": "Ruijie RG-S2910-24GT4XS", "sub_line": "24×GE + 4×10GE SFP+" },
+    "front_panel": { "power_button": false, "console": "RJ45", "usb": false, "reset_pinhole": true, "mode_button": true },
+    "port_layout": [
+      {
+        "group_id": "ge",
+        "kind": "rj45",
+        "label": "24×10/100/1000BASE-T",
+        "speed_bps": 1000000000,
+        "poe": false,
+        "naming": { "name_prefix": "GigabitEthernet 0/", "short_prefix": "Gi0/", "alias_prefix": "GigabitEthernet0/" },
+        "rows": [ { "start_index": 1, "count": 12 }, { "start_index": 13, "count": 12 } ]
+      },
+      {
+        "group_id": "xg",
+        "kind": "sfp",
+        "label": "4×10GE SFP+",
+        "speed_bps": 10000000000,
+        "poe": false,
+        "naming": { "name_prefix": "TenGigabitEthernet 0/", "short_prefix": "Te0/", "alias_prefix": "TenGigabitEthernet0/" },
+        "rows": [ { "start_index": 25, "count": 4 } ]
+      }
+    ],
+    "leds": { "per_port": 1, "system_label": "SYS", "power_label": "PWR", "speed_label": "SPD" },
+    "airflow": "front-to-back"
+  },
+  "port_overrides": [
+    { "short_name": "Te0/25", "note": "10GE SFP+ 上行光口，序号延续电口编号" }
+  ],
+  "runtime": {
+    "type": "simulated",
+    "profile": "ruijie-rgos-switch",
+    "capabilities": ["power", "link", "console", "cold_snapshot", "vlan", "lldp"]
+  },
+  "features": ["vlan", "stp", "lldp", "static-route", "acl", "dhcp-snooping", "qos"]
+}

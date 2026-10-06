@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "huawei-usg6300e",
+  "vendor_id": "huawei",
+  "device_type": "firewall",
+  "display_name": "华为 USG6300E",
+  "product_name": "HiSecEngine USG6300E",
+  "device_class": "企业级下一代防火墙",
+  "os_version": "VRP V200R019C10SPC500",
+  "serial_prefix": "210235",
+  "visual": {
+    "chassis": { "width": 4.42, "height": 0.44, "depth": 2.20, "u_height": 1 },
+    "silkscreen": { "brand_line": "HUAWEI USG6300E", "sub_line": "8×GE + 2×10GE SFP+" },
+    "front_panel": { "power_button": true, "console": "RJ45", "usb": true, "reset_pinhole": true, "mode_button": false },
+    "port_layout": [
+      {
+        "group_id": "ge",
+        "kind": "rj45",
+        "label": "8×GE 电口",
+        "speed_bps": 1000000000,
+        "poe": false,
+        "naming": { "name_prefix": "GigabitEthernet1/0/", "short_prefix": "GE1/0/", "alias_prefix": "Gi1/0/" },
+        "rows": [ { "start_index": 0, "count": 4 }, { "start_index": 4, "count": 4 } ]
+      },
+      {
+        "group_id": "xg",
+        "kind": "sfp",
+        "label": "2×10GE SFP+",
+        "speed_bps": 10000000000,
+        "poe": false,
+        "naming": { "name_prefix": "XGigabitEthernet1/0/", "short_prefix": "XGE1/0/", "alias_prefix": "XGi1/0/" },
+        "rows": [ { "start_index": 8, "count": 2 } ]
+      }
+    ],
+    "leds": { "per_port": 1, "system_label": "SYS", "power_label": "PWR", "speed_label": "SPD" },
+    "airflow": "side-to-side"
+  },
+  "port_overrides": [
+    { "short_name": "GE1/0/0", "note": "默认 WAN 口（外网接入）" },
+    { "short_name": "XGE1/0/8", "note": "10GE SFP+ 光口，可用于内网核心互联" }
+  ],
+  "runtime": {
+    "type": "simulated",
+    "profile": "huawei-vrp-firewall",
+    "capabilities": ["power", "link", "console", "cold_snapshot"]
+  },
+  "features": ["acl", "nat", "vpn", "static-route", "ospf", "dhcp-server"]
+}

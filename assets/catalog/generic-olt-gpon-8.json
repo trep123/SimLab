@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "generic-olt-gpon-8",
+  "vendor_id": "generic",
+  "device_type": "olt",
+  "display_name": "通用 GPON OLT（8×PON 口）",
+  "product_name": "Generic OLT GPON-8",
+  "device_class": "光线路终端（局端 OLT）",
+  "os_version": "NOS-OLT 1.0.0",
+  "serial_prefix": "OLT2601",
+  "visual": {
+    "chassis": {
+      "width": 4.42,
+      "height": 0.44,
+      "depth": 2.4,
+      "u_height": 1
+    },
+    "silkscreen": {
+      "brand_line": "SIMLAB OLT GPON-8",
+      "sub_line": "8×GPON + 4×10GE"
+    },
+    "front_panel": {
+      "power_button": true,
+      "console": "RJ45",
+      "usb": true,
+      "reset_pinhole": true
+    },
+    "port_layout": [
+      {
+        "group_id": "pon",
+        "kind": "sfp",
+        "label": "8×GPON PON 口",
+        "speed_bps": 10000000000,
+        "poe": false,
+        "naming": {
+          "name_prefix": "GPON0/1/",
+          "short_prefix": "GPON0/1/",
+          "alias_prefix": "gpon0/1/"
+        },
+        "rows": [
+          {
+            "start_index": 1,
+            "count": 4
+          },
+          {
+            "start_index": 5,
+            "count": 4
+          }
+        ]
+      },
+      {
+        "group_id": "uplink",
+        "kind": "sfp",
+        "label": "4×10GE SFP+ 上联",
+        "speed_bps": 10000000000,
+        "poe": false,
+        "naming": {
+          "name_prefix": "XGigabitEthernet0/0/",
+          "short_prefix": "XGE0/0/",
+          "alias_prefix": "XGi0/0/"
+        },
+        "rows": [
+          {
+            "start_index": 1,
+            "count": 2
+          },
+          {
+            "start_index": 3,
+            "count": 2
+          }
+        ]
+      }
+    ],
+    "leds": {
+      "per_port": 2,
+      "system_label": "SYS",
+      "power_label": "PWR"
+    }
+  },
+  "runtime": {
+    "type": "simulated",
+    "profile": "generic-nos-olt",
+    "capabilities": [
+      "power",
+      "link",
+      "console"
+    ]
+  },
+  "features": [
+    "optical",
+    "gpon",
+    "vlan",
+    "qinq",
+    "dhcp-server"
+  ],
+  "optical": {
+    "role": "olt",
+    "pon_ports": 2,
+    "max_onu_per_port": 32,
+    "tx_power_dbm": 3.0,
+    "downstream_capacity_mbps": 2488,
+    "upstream_capacity_mbps": 1244,
+    "max_distance_m": 20000
+  }
+}

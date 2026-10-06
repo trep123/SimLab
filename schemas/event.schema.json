@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://simlab.local/schemas/event.schema.json",
+  "title": "SimLab Experiment Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "experiment_id", "seq", "generation", "type", "occurred_at", "payload"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "experiment_id": {"type": "string", "format": "uuid"},
+    "seq": {"type": "integer", "minimum": 1},
+    "generation": {"type": "integer", "minimum": 1},
+    "type": {"type": "string", "minLength": 1, "maxLength": 100},
+    "occurred_at": {"type": "string", "format": "date-time"},
+    "command_id": {"type": ["string", "null"], "format": "uuid"},
+    "payload": {"type": "object"}
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "vendor_id": "generic",
+  "display_name": "通用设备 Generic",
+  "display_name_en": "Generic",
+  "os_family": "NOS",
+  "os_version": "NOS 1.0.0",
+  "cli_profile_id": "generic-nos",
+  "brand": {
+    "chassis_color": "#9aa0a6",
+    "chassis_dark_color": "#767c83",
+    "faceplate_color": "#2a2e33",
+    "logo_text": "NETLAB",
+    "logo_color": "#00bcd4",
+    "accent_color": "#00bcd4",
+    "led_scheme": "generic",
+    "silkscreen_font": "sans-serif"
+  },
+  "prompt": {
+    "user": "{hostname}>",
+    "config": "{hostname}(config)#",
+    "interface": "{hostname}(config-if-{interface})#",
+    "vlan": "{hostname}(config-vlan{vlan})#"
+  },
+  "boot_log": [
+    "NetLab NOS Boot Loader Version 1.0.0",
+    "Copyright (c) 2024 NetLab Simulation Project.",
+    "CPU: Quad-core ARM Cortex-A53 1.2GHz",
+    "DDR4 SDRAM: 1024MB, NAND Flash: 512MB",
+    "Press Ctrl+B to enter BootROM menu... 0",
+    "Loading system image from flash:/nos-1.0.0.bin ...",
+    "Decompressing image ... Done.",
+    "NetLab {os_version} (Network Operating System)",
+    "Copyright (c) 2024 NetLab Simulation Project.",
+    "{product_name} uptime is 0 day, 0 hour, 1 minute",
+    "System serial number: {serial_number}",
+    "Memory: 1024MB, Flash: 512MB",
+    "Slot 0: {model}, 28 ports detected",
+    "Port self-test: 28 ports passed, link state ready",
+    "System initialization complete."
+  ],
+  "messages": {
+    "unknown_command": "% Invalid input detected at '^' marker.",
+    "incomplete_command": "% Incomplete command.",
+    "ambiguous_command": "% Ambiguous command.",
+    "wrong_parameter": "% Invalid input detected at '^' marker.",
+    "permission_denied": "% Permission denied.",
+    "config_saved": "Configuration saved to startup-config successfully.",
+    "save_confirm": "Save running configuration to startup-config? [Y/N]:",
+    "reboot_confirm": "Reboot the system? [Y/N]:",
+    "reboot_started": "Info: The system is now starting to reboot...",
+    "counter_cleared": "Info: The counters of the specified interface are cleared.",
+    "poe_enabled": "Info: PoE is enabled on the interface.",
+    "interface_not_found": "% Invalid interface name."
+  },
+  "confirm_words": {
+    "yes": ["y", "yes"],
+    "no": ["n", "no"]
+  },
+  "led_legend": {
+    "link_up": "常亮/闪烁 绿色",
+    "link_down": "熄灭",
+    "poe": "常亮 黄色（PoE 供电中）",
+    "error": "常亮 红色"
+  }
+}

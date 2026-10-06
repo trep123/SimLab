@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "vendor_id": "h3c",
+  "display_name": "新华三 H3C",
+  "display_name_en": "H3C",
+  "os_family": "Comware",
+  "os_version": "Comware Software, Version 7.1.070, Release 3506P02",
+  "cli_profile_id": "h3c-comware",
+  "brand": {
+    "chassis_color": "#33383f",
+    "chassis_dark_color": "#20242a",
+    "faceplate_color": "#15181c",
+    "logo_text": "H3C",
+    "logo_color": "#00a6a6",
+    "accent_color": "#00a6a6",
+    "led_scheme": "comware",
+    "silkscreen_font": "sans-serif"
+  },
+  "prompt": {
+    "user": "<{hostname}>",
+    "config": "[{hostname}]",
+    "interface": "[{hostname}-{interface}]",
+    "vlan": "[{hostname}-vlan{vlan}]"
+  },
+  "boot_log": [
+    "BootWare, Version 1.42",
+    "Copyright (c) 2004-2024 New H3C Technologies Co., Ltd.",
+    "Compiled Date   : Jan 10 2024",
+    "CPU Type        : Celeron 1047UE 1.40GHz",
+    "BootWare Size   : 1024KB, Flash Size: 1024MB",
+    "Memory Size     : 2048MB, DDR3 SDRAM",
+    "Press Ctrl+B to enter BootWare menu... 0",
+    "Loading the Boot image...Done.",
+    "Loading the System image...Done.",
+    "Starting the software...",
+    "H3C {os_version}",
+    "Copyright (c) 2004-2024 New H3C Technologies Co., Ltd.",
+    "H3C {product_name} uptime is 0 weeks, 0 days, 0 hours, 1 minute",
+    "Memory: 2048MB, Flash: 1024MB, CPLD Version: 3.0",
+    "Slot 1: {model}, S/N: {serial_number}, self-test passed",
+    "Port initialization: 28 ports detected, link state ready"
+  ],
+  "messages": {
+    "unknown_command": "% Unrecognized command found at '^' position.",
+    "incomplete_command": "% Incomplete command found at '^' position.",
+    "ambiguous_command": "% Ambiguous command found at '^' position.",
+    "wrong_parameter": "% Wrong parameter found at '^' position.",
+    "permission_denied": "Permission denied.",
+    "config_saved": "Configuration is saved to device successfully.",
+    "save_confirm": "The current configuration will be written to the device. Are you sure? [Y/N]:",
+    "reboot_confirm": "This command will reboot the device. Continue? [Y/N]:",
+    "reboot_started": "Info: The system is now starting to reboot...",
+    "counter_cleared": "Info: The counters of the specified interface are cleared.",
+    "poe_enabled": "Info: PoE is enabled on the interface.",
+    "interface_not_found": "Error: The interface does not exist."
+  },
+  "confirm_words": {
+    "yes": ["y", "yes"],
+    "no": ["n", "no"]
+  },
+  "led_legend": {
+    "link_up": "常亮/闪烁 绿色",
+    "link_down": "熄灭",
+    "poe": "常亮 黄色（PoE 供电中）",
+    "error": "常亮 红色"
+  }
+}

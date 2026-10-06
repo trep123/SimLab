@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "generic-ap-ax3000",
+  "vendor_id": "generic",
+  "device_type": "ap",
+  "display_name": "通用 Wi-Fi 6 吸顶 AP AX3000",
+  "product_name": "Generic AP AX3000",
+  "device_class": "室内双频无线接入点",
+  "os_version": "NOS-WLAN 1.0.0",
+  "serial_prefix": "AP3000",
+  "visual": {
+    "chassis": {
+      "width": 0.86,
+      "height": 0.2,
+      "depth": 0.86,
+      "u_height": 0
+    },
+    "silkscreen": {
+      "brand_line": "SIMLAB AP AX3000",
+      "sub_line": "Wi-Fi 6 · 2.4G/5G"
+    },
+    "front_panel": {
+      "power_button": true,
+      "console": "RJ45",
+      "usb": false,
+      "reset_pinhole": true
+    },
+    "port_layout": [
+      {
+        "group_id": "uplink",
+        "kind": "rj45",
+        "label": "1×2.5GE 上联",
+        "speed_bps": 1000000000,
+        "poe": true,
+        "naming": {
+          "name_prefix": "GigabitEthernet0/0/",
+          "short_prefix": "GE0/0/",
+          "alias_prefix": "Gi0/0/"
+        },
+        "rows": [
+          {
+            "start_index": 1,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "group_id": "console",
+        "kind": "rj45",
+        "label": "Console",
+        "speed_bps": 100000000,
+        "poe": false,
+        "naming": {
+          "name_prefix": "Console0/0/",
+          "short_prefix": "CON0/0/",
+          "alias_prefix": "Con0/0/"
+        },
+        "rows": [
+          {
+            "start_index": 1,
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "leds": {
+      "per_port": 1,
+      "system_label": "SYS",
+      "power_label": "PWR"
+    }
+  },
+  "runtime": {
+    "type": "simulated",
+    "profile": "generic-nos-ap",
+    "capabilities": [
+      "power",
+      "link",
+      "console",
+      "poe"
+    ]
+  },
+  "features": [
+    "wireless",
+    "wlan",
+    "poe",
+    "vlan"
+  ],
+  "wireless": {
+    "role": "ap",
+    "ssid_default": "SIMLAB-WLAN",
+    "channel": 6,
+    "band": "2.4GHz",
+    "tx_power_dbm": 20,
+    "sensitivity_dbm": -75,
+    "max_clients": 32
+  }
+}

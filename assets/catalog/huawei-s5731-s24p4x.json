@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "huawei-s5731-s24p4x",
+  "vendor_id": "huawei",
+  "device_type": "switch",
+  "display_name": "华为 S5731-S24P4X",
+  "product_name": "CloudEngine S5731-S24P4X",
+  "device_class": "三层 PoE 接入交换机",
+  "os_version": "VRP V200R019C10SPC500",
+  "serial_prefix": "210235",
+  "visual": {
+    "chassis": { "width": 4.42, "height": 0.44, "depth": 2.20, "u_height": 1 },
+    "silkscreen": { "brand_line": "HUAWEI S5731-S24P4X", "sub_line": "24×GE PoE+ (400W) + 4×10GE SFP+" },
+    "front_panel": { "power_button": false, "console": "RJ45", "usb": true, "reset_pinhole": true, "mode_button": true },
+    "port_layout": [
+      {
+        "group_id": "ge",
+        "kind": "rj45",
+        "label": "24×10/100/1000BASE-T PoE+ (30W/口, 整机 400W)",
+        "speed_bps": 1000000000,
+        "poe": true,
+        "naming": { "name_prefix": "GigabitEthernet0/0/", "short_prefix": "GE0/0/", "alias_prefix": "Gi0/0/" },
+        "rows": [ { "start_index": 1, "count": 12 }, { "start_index": 13, "count": 12 } ]
+      },
+      {
+        "group_id": "xg",
+        "kind": "sfp",
+        "label": "4×10GE SFP+",
+        "speed_bps": 10000000000,
+        "poe": false,
+        "naming": { "name_prefix": "XGigabitEthernet0/0/", "short_prefix": "XGE0/0/", "alias_prefix": "XGi0/0/" },
+        "rows": [ { "start_index": 1, "count": 2 }, { "start_index": 3, "count": 2 } ]
+      }
+    ],
+    "leds": { "per_port": 1, "system_label": "SYS", "power_label": "PWR", "speed_label": "SPED" },
+    "airflow": "front-to-back"
+  },
+  "port_overrides": [
+    { "short_name": "GE0/0/1", "note": "PoE+ 端口，单口最大 30W，整机 PoE 预算 400W" },
+    { "short_name": "XGE0/0/1", "note": "10GE SFP+ 上行光口，支持 10G/1G 光模块" }
+  ],
+  "runtime": {
+    "type": "simulated",
+    "profile": "huawei-vrp-switch",
+    "capabilities": ["power", "link", "console", "cold_snapshot", "poe", "vlan", "lldp"]
+  },
+  "features": ["vlan", "stp", "lldp", "poe", "static-route", "ospf", "acl", "dhcp-snooping", "qos"]
+}

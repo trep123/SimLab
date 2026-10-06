@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "generic-phone-wifi6",
+  "vendor_id": "generic",
+  "device_type": "phone",
+  "display_name": "通用 Wi-Fi 6 智能手机",
+  "product_name": "Generic Phone WiFi6",
+  "device_class": "无线客户端（手机）",
+  "os_version": "NOS-Mobile 1.0.0",
+  "serial_prefix": "PH2601",
+  "visual": {
+    "chassis": {
+      "width": 0.0715,
+      "height": 0.0085,
+      "depth": 0.152,
+      "u_height": 0
+    },
+    "silkscreen": {
+      "brand_line": "SIMLAB PHONE",
+      "sub_line": "Wi-Fi 6 STA"
+    },
+    "front_panel": {
+      "power_button": true,
+      "console": false,
+      "usb": true
+    },
+    "port_layout": [
+      {
+        "group_id": "usb",
+        "kind": "rj45",
+        "label": "USB-C",
+        "speed_bps": 100000000,
+        "poe": false,
+        "naming": {
+          "name_prefix": "USB0/0/",
+          "short_prefix": "USB0/0/",
+          "alias_prefix": "Usb0/0/"
+        },
+        "rows": [
+          {
+            "start_index": 1,
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "leds": {
+      "per_port": 1,
+      "system_label": "PWR",
+      "power_label": "WLAN"
+    }
+  },
+  "runtime": {
+    "type": "qemu",
+    "profile": "generic-nos-client",
+    "capabilities": [
+      "power",
+      "link",
+      "console"
+    ],
+    "virtualization": {
+      "engine": "qemu",
+      "machine": "aarch64",
+      "image": "android-14-gsi",
+      "console": "adb-shell",
+      "boot_seconds": 25,
+      "snapshot": true,
+      "notes": "手机以 QEMU 虚拟机运行移动系统镜像"
+    }
+  },
+  "features": [
+    "wireless",
+    "wlan",
+    "dhcp-client"
+  ],
+  "wireless": {
+    "role": "sta",
+    "supported_rates_mbps": [
+      6.5,
+      13,
+      19.5,
+      26,
+      39,
+      52,
+      58.5,
+      65,
+      78,
+      104,
+      117,
+      130,
+      144.4
+    ]
+  }
+}

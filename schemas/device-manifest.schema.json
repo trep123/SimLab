@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://simlab.local/schemas/device-manifest.schema.json",
+  "title": "SimLab Device Manifest 1.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "model_id", "release_version", "device_type", "name", "visual", "ports", "runtime_profiles", "fidelity"],
+  "properties": {
+    "schema_version": {"const": "1.1"},
+    "model_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,62}$"},
+    "release_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "device_type": {"enum": ["pc", "server", "switch", "router", "firewall", "access_point", "onu", "olt", "monitor", "peripheral"]},
+    "name": {"type": "string", "minLength": 1, "maxLength": 120},
+    "visual": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["units", "anchors"],
+      "properties": {
+        "asset_id": {"type": ["string", "null"]},
+        "units": {"const": "meter"},
+        "anchors": {"type": "object", "additionalProperties": {"type": "string"}}
+      }
+    },
+    "ports": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["port_key", "connector_type", "role", "protocol"],
+        "properties": {
+          "port_key": {"type": "string", "minLength": 1},
+          "connector_type": {"type": "string", "minLength": 1},
+          "role": {"enum": ["source", "sink", "bidirectional"]},
+          "protocol": {"type": "string", "minLength": 1},
+          "speed_bps": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "slots": {"type": "array", "items": {"type": "object"}},
+    "runtime_profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["role", "backend", "profile_release_id"],
+        "properties": {
+          "role": {"type": "string"},
+          "backend": {"type": "string"},
+          "profile_release_id": {"type": "string"}
+        }
+      }
+    },
+    "fidelity": {"type": "object", "minProperties": 1}
+  }
+}

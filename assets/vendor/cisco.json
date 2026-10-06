@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "vendor_id": "cisco",
+  "display_name": "思科 Cisco",
+  "display_name_en": "Cisco",
+  "os_family": "IOS",
+  "os_version": "IOS 15.2(4)E7",
+  "cli_profile_id": "cisco-ios",
+  "brand": {
+    "chassis_color": "#8e959c",
+    "chassis_dark_color": "#6a7079",
+    "faceplate_color": "#2c3038",
+    "logo_text": "CISCO",
+    "logo_color": "#049fd9",
+    "accent_color": "#049fd9",
+    "led_scheme": "ios",
+    "silkscreen_font": "sans-serif"
+  },
+  "prompt": {
+    "user": "{hostname}>",
+    "privileged": "{hostname}#",
+    "config": "{hostname}(config)#",
+    "interface": "{hostname}(config-if)#",
+    "vlan": "{hostname}(config-vlan)#"
+  },
+  "boot_log": [
+    "System Bootstrap, Version 15.2(4r)E7, RELEASE SOFTWARE (fc1)",
+    "Compiled Thu 12-Sep-24 10:12 by prod_rel_team",
+    "cisco {product_name} (1RU) processor with 4194304K/2048K bytes of memory.",
+    "MPC8572 CPU at 1500MHz, Cisco IOS Software",
+    "Initializing NVRAM... Done",
+    "Loading \"flash:/{model}.bin\"... OK",
+    "Self decompressing the image : ######################## [OK]",
+    "Cisco IOS Software, ISR Software (X86_64_LINUX_IOSD-UNIVERSALK9-M),",
+    "{os_version}, RELEASE SOFTWARE (fc2)",
+    "Copyright (c) 1986-2024 by Cisco Systems, Inc.",
+    "Compiled Thu 12-Sep-24 10:12 by prod_rel_team",
+    "Processor board ID {serial_number}",
+    "NVRAM configuration, 2048K bytes of non-volatile configuration memory.",
+    "Interface GigabitEthernet0/0/0 ... GigabitEthernet0/0/2 ... initialized",
+    "Press RETURN to get started!"
+  ],
+  "messages": {
+    "unknown_command": "% Invalid input detected at '^' marker.",
+    "incomplete_command": "% Incomplete command.",
+    "ambiguous_command": "% Ambiguous command.",
+    "wrong_parameter": "% Invalid input detected at '^' marker.",
+    "permission_denied": "% Authorization failed.",
+    "config_saved": "Building configuration...\n[OK]",
+    "save_confirm": "Destination filename [startup-config]?",
+    "reboot_confirm": "Proceed with reload? [confirm]",
+    "reboot_started": "%SYS-5-RELOAD: Reload requested by console. Reload Reason: Reload command.",
+    "counter_cleared": "%CLEAR-5-COUNTERS: Clear counter on interface by console.",
+    "poe_enabled": "%ILPOWER-6-PORTON: PoE is enabled on the interface.",
+    "interface_not_found": "% Invalid interface or interface range."
+  },
+  "confirm_words": {
+    "yes": ["y", "yes"],
+    "no": ["n", "no"]
+  },
+  "led_legend": {
+    "link_up": "常亮/闪烁 绿色",
+    "link_down": "熄灭",
+    "poe": "常亮 琥珀色（PoE 供电中）",
+    "error": "常亮 琥珀色"
+  }
+}

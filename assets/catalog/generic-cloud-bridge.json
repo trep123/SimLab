@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "generic-cloud-bridge",
+  "vendor_id": "generic",
+  "device_type": "cloud",
+  "display_name": "Cloud 桥接网络（4×GE）",
+  "product_name": "SimLab Cloud Bridge",
+  "device_class": "外部二层桥接网络",
+  "os_version": "逻辑网络节点",
+  "serial_prefix": "CLD2601",
+  "visual": {
+    "chassis": {"width": 1.8, "height": 0.5, "depth": 1.2, "u_height": 0},
+    "silkscreen": {"brand_line": "SIMLAB CLOUD", "sub_line": "HOST BRIDGE · 4×GE"},
+    "front_panel": {"power_button": false, "console": false, "usb": false},
+    "port_layout": [{
+      "group_id": "downlink",
+      "kind": "rj45",
+      "label": "4×GE 下联口",
+      "speed_bps": 1000000000,
+      "poe": false,
+      "naming": {"name_prefix": "Ethernet", "short_prefix": "eth", "alias_prefix": "eth"},
+      "rows": [{"start_index": 0, "count": 4}]
+    }],
+    "leds": {"per_port": 1, "system_label": "LINK", "power_label": "HOST"}
+  },
+  "runtime": {"type": "logical", "profile": "host-ovs-cloud", "capabilities": ["link"]},
+  "features": ["external-bridge", "layer2", "ethernet"]
+}

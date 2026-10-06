@@ -1,0 +1,1373 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "cisco-ios",
+  "vendor_id": "cisco",
+  "modes": {
+    "user": {
+      "prompt_key": "user",
+      "description": "用户执行模式",
+      "enter_command": null
+    },
+    "privileged": {
+      "prompt_key": "privileged",
+      "description": "特权执行模式",
+      "enter_command": "enable"
+    },
+    "config": {
+      "prompt_key": "config",
+      "description": "全局配置模式",
+      "enter_command": "configure terminal"
+    },
+    "interface": {
+      "prompt_key": "interface",
+      "description": "接口配置模式",
+      "enter_command": "interface {interface}"
+    },
+    "vlan": {
+      "prompt_key": "vlan",
+      "description": "VLAN 配置模式",
+      "enter_command": "vlan {vlan}"
+    }
+  },
+  "commands": [
+    {
+      "id": "cisco.show.version",
+      "syntax": "show version",
+      "aliases": [
+        "sh ver",
+        "sh version",
+        "show ver"
+      ],
+      "modes": [
+        "user",
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看系统版本与运行时间",
+      "handler": "show_version",
+      "args": [],
+      "output": [
+        "Cisco IOS Software, ISR Software (X86_64_LINUX_IOSD-UNIVERSALK9-M),",
+        "{os_version}, RELEASE SOFTWARE (fc2)",
+        "Technical Support: http://www.cisco.com/techsupport",
+        "Copyright (c) 1986-2024 by Cisco Systems, Inc.",
+        "Compiled Thu 12-Sep-24 10:12 by prod_rel_team",
+        "",
+        "ROM: System Bootstrap, Version 15.2(4r)E7, RELEASE SOFTWARE (fc1)",
+        "",
+        "{product_name} uptime is {uptime}",
+        "System returned to ROM by reload",
+        "System restarted at {now}",
+        "System image file is \"flash:/{model}.bin\"",
+        "",
+        "cisco {product_name} (1RU) processor with 4194304K/2048K bytes of memory.",
+        "Processor board ID {serial_number}",
+        "MPC8572 CPU at 1500MHz, 2048KB L2 Cache",
+        "Base Ethernet MAC Address : {mac_address}",
+        "DRAM configuration is 64 bits wide with parity disabled.",
+        "2048K bytes of non-volatile configuration memory.",
+        "4194304K bytes of ATA System CompactFlash 0 (CompactFlash)",
+        "",
+        "Configuration register is 0x2102"
+      ]
+    },
+    {
+      "id": "cisco.show.interface_brief",
+      "syntax": "show interfaces status",
+      "aliases": [
+        "sh int st",
+        "sh interfaces status",
+        "sh int status"
+      ],
+      "modes": [
+        "user",
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看端口状态概览",
+      "handler": "show_interface_brief",
+      "args": [
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为全部接口"
+        }
+      ],
+      "output": [
+        "{interface_brief_table}"
+      ]
+    },
+    {
+      "id": "cisco.show.interface_detail",
+      "syntax": "show interfaces {interface}",
+      "aliases": [
+        "sh int",
+        "sh interfaces"
+      ],
+      "modes": [
+        "user",
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看指定端口的详细状态",
+      "handler": "show_interface_detail",
+      "args": [
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": true,
+          "help": "接口名称"
+        }
+      ],
+      "output": [
+        "{interface_detail}"
+      ]
+    },
+    {
+      "id": "cisco.show.running_config",
+      "syntax": "show running-config",
+      "aliases": [
+        "sh run",
+        "sh running-config",
+        "show run"
+      ],
+      "modes": [
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看当前生效的配置",
+      "handler": "show_running_config",
+      "args": [],
+      "output": [
+        "{running_config}"
+      ]
+    },
+    {
+      "id": "cisco.show.current_view",
+      "syntax": "do show running-config interface [{interface}]",
+      "aliases": [
+        "do sh run int",
+        "do show run int"
+      ],
+      "modes": [
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看当前视图下生效的配置",
+      "handler": "show_current_view",
+      "args": [
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": [
+        "{current_view_config}"
+      ]
+    },
+    {
+      "id": "cisco.show.vlan",
+      "syntax": "show vlan brief",
+      "aliases": [
+        "sh vlan br",
+        "sh vlan",
+        "show vlan"
+      ],
+      "modes": [
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看 VLAN 信息",
+      "handler": "show_vlan",
+      "args": [],
+      "output": [
+        "{vlan_table}"
+      ]
+    },
+    {
+      "id": "cisco.show.mac_table",
+      "syntax": "show mac address-table",
+      "aliases": [
+        "sh mac add",
+        "sh mac address-table",
+        "sh mac"
+      ],
+      "modes": [
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看 MAC 地址表",
+      "handler": "show_mac_table",
+      "args": [],
+      "output": [
+        "          Mac Address Table",
+        "-------------------------------------------",
+        "{mac_table}"
+      ]
+    },
+    {
+      "id": "cisco.show.arp",
+      "syntax": "show ip arp",
+      "aliases": [
+        "sh ip arp",
+        "sh ip a"
+      ],
+      "modes": [
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看 ARP 表项",
+      "handler": "show_arp",
+      "args": [],
+      "output": [
+        "{arp_table}"
+      ]
+    },
+    {
+      "id": "cisco.show.route",
+      "syntax": "show ip route",
+      "aliases": [
+        "sh ip ro",
+        "sh ip route"
+      ],
+      "modes": [
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看 IP 路由表",
+      "handler": "show_route",
+      "args": [],
+      "output": [
+        "Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP",
+        "       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area",
+        "       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2",
+        "       E1 - OSPF external type 1, E2 - OSPF external type 2",
+        "       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2",
+        "       ia - IS-IS inter area, * - candidate default, U - per-user static route",
+        "       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP",
+        "       + - replicated route, % - next hop override",
+        "",
+        "{route_table}"
+      ]
+    },
+    {
+      "id": "cisco.show.lldp_neighbor",
+      "syntax": "show lldp neighbors",
+      "aliases": [
+        "sh lldp ne",
+        "sh lldp neighbors"
+      ],
+      "modes": [
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看 LLDP 邻居",
+      "handler": "show_lldp_neighbor",
+      "args": [],
+      "output": [
+        "Capability codes:",
+        "    (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device",
+        "    (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other",
+        "{lldp_table}"
+      ]
+    },
+    {
+      "id": "cisco.show.poe",
+      "syntax": "show power inline",
+      "aliases": [
+        "sh power inline",
+        "sh power in"
+      ],
+      "modes": [
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看端口 PoE 供电状态",
+      "handler": "show_poe",
+      "args": [],
+      "output": [
+        "{poe_table}"
+      ]
+    },
+    {
+      "id": "cisco.show.counters",
+      "syntax": "show interfaces counters [{interface}]",
+      "aliases": [
+        "sh int counters",
+        "sh int cou"
+      ],
+      "modes": [
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看端口收发计数",
+      "handler": "show_counters",
+      "args": [
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为全部接口"
+        }
+      ],
+      "output": [
+        "{counters_table}"
+      ]
+    },
+    {
+      "id": "cisco.show.log",
+      "syntax": "show logging",
+      "aliases": [
+        "sh log",
+        "sh logging"
+      ],
+      "modes": [
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看日志缓冲",
+      "handler": "show_log",
+      "args": [],
+      "output": [
+        "Syslog logging: enabled (0 messages dropped, 0 messages rate-limited)",
+        "",
+        "Console logging: level debugging, xml disabled, filtering disabled",
+        "Monitor logging: level debugging, xml disabled, filtering disabled",
+        "Buffer logging:  level debugging, xml disabled, filtering disabled",
+        "",
+        "Log Buffer (4096 bytes):",
+        "{log_entries}"
+      ]
+    },
+    {
+      "id": "cisco.show.environment",
+      "syntax": "show environment",
+      "aliases": [
+        "sh env",
+        "sh environment"
+      ],
+      "modes": [
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "查看温度、风扇与电源状态",
+      "handler": "show_environment",
+      "args": [],
+      "output": [
+        "Temperature summary:",
+        "  Current ambient temperature: {temperature} Celsius",
+        "  System temperature: {temperature} Celsius",
+        "",
+        "Fan status:",
+        "  Fan 1: {fan_status}",
+        "",
+        "Power supply status:",
+        "  PS 1: {power_status}",
+        "  Power supply 1 type: AC"
+      ]
+    },
+    {
+      "id": "cisco.mode.enable",
+      "syntax": "enable",
+      "aliases": [
+        "en"
+      ],
+      "modes": [
+        "user"
+      ],
+      "help": "进入特权执行模式",
+      "handler": "enter_config",
+      "args": [],
+      "next_mode": "privileged",
+      "output": []
+    },
+    {
+      "id": "cisco.mode.configure",
+      "syntax": "configure terminal",
+      "aliases": [
+        "conf t",
+        "config t",
+        "configure t"
+      ],
+      "modes": [
+        "privileged"
+      ],
+      "help": "进入全局配置模式",
+      "handler": "enter_config",
+      "args": [],
+      "next_mode": "config",
+      "output": [
+        "Enter configuration commands, one per line.  End with CNTL/Z."
+      ]
+    },
+    {
+      "id": "cisco.mode.exit",
+      "syntax": "exit",
+      "aliases": [
+        "ex"
+      ],
+      "modes": [
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "退回上一级模式",
+      "handler": "exit_mode",
+      "args": [],
+      "output": []
+    },
+    {
+      "id": "cisco.mode.end",
+      "syntax": "end",
+      "aliases": [],
+      "modes": [
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "直接回到特权执行模式",
+      "handler": "return_root",
+      "args": [],
+      "next_mode": "privileged",
+      "output": []
+    },
+    {
+      "id": "cisco.config.hostname",
+      "syntax": "hostname {hostname}",
+      "aliases": [
+        "host"
+      ],
+      "modes": [
+        "config"
+      ],
+      "help": "修改设备名称",
+      "handler": "set_hostname",
+      "args": [
+        {
+          "name": "hostname",
+          "type": "word",
+          "required": true,
+          "help": "设备名称"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "cisco.mode.interface",
+      "syntax": "interface {interface}",
+      "aliases": [
+        "int"
+      ],
+      "modes": [
+        "config"
+      ],
+      "help": "进入接口配置模式",
+      "handler": "enter_interface",
+      "args": [
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": true,
+          "help": "接口名称"
+        }
+      ],
+      "next_mode": "interface",
+      "output": []
+    },
+    {
+      "id": "cisco.mode.vlan",
+      "syntax": "vlan {vlan}",
+      "aliases": [
+        "vl"
+      ],
+      "modes": [
+        "config"
+      ],
+      "help": "创建并进入 VLAN 配置模式",
+      "handler": "enter_vlan",
+      "args": [
+        {
+          "name": "vlan",
+          "type": "vlan",
+          "required": true,
+          "help": "VLAN 编号（1-4094）"
+        }
+      ],
+      "next_mode": "vlan",
+      "output": []
+    },
+    {
+      "id": "cisco.port.shutdown",
+      "syntax": "shutdown",
+      "aliases": [
+        "shut"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "关闭端口",
+      "handler": "set_shutdown",
+      "args": [
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": [
+        "%LINK-5-CHANGED: Interface {interface}, changed state to administratively down"
+      ]
+    },
+    {
+      "id": "cisco.port.no_shutdown",
+      "syntax": "no shutdown",
+      "aliases": [
+        "no shut"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "打开端口",
+      "handler": "set_no_shutdown",
+      "args": [
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": [
+        "%LINK-5-CHANGED: Interface {interface}, changed state to up",
+        "%LINEPROTO-5-UPDOWN: Line protocol on Interface {interface}, changed state to up"
+      ]
+    },
+    {
+      "id": "cisco.port.speed",
+      "syntax": "speed {speed}",
+      "aliases": [
+        "spe"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "设置端口速率",
+      "handler": "set_speed",
+      "args": [
+        {
+          "name": "speed",
+          "type": "speed",
+          "required": true,
+          "help": "速率：10/100/1000/auto"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "cisco.port.duplex",
+      "syntax": "duplex {duplex}",
+      "aliases": [
+        "dup"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "设置端口双工模式",
+      "handler": "set_duplex",
+      "args": [
+        {
+          "name": "duplex",
+          "type": "enum",
+          "values": [
+            "full",
+            "half",
+            "auto"
+          ],
+          "required": true,
+          "help": "双工模式"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "cisco.port.switchport_mode",
+      "syntax": "switchport mode {mode}",
+      "aliases": [
+        "switchport mo"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "设置端口模式（access/trunk）",
+      "handler": "set_port_mode",
+      "args": [
+        {
+          "name": "mode",
+          "type": "enum",
+          "values": [
+            "access",
+            "trunk"
+          ],
+          "required": true,
+          "help": "端口模式"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "cisco.port.access_vlan",
+      "syntax": "switchport access vlan {vlan}",
+      "aliases": [
+        "switchport access v"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "把端口划入指定 VLAN（access）",
+      "handler": "set_port_vlan",
+      "args": [
+        {
+          "name": "vlan",
+          "type": "vlan",
+          "required": true,
+          "help": "VLAN 编号（1-4094）"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "cisco.port.trunk_vlan",
+      "syntax": "switchport trunk allowed vlan {vlan}",
+      "aliases": [
+        "switchport trunk allowed v"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "配置 Trunk 端口允许通过的 VLAN",
+      "handler": "set_port_vlan",
+      "args": [
+        {
+          "name": "vlan",
+          "type": "vlan",
+          "required": true,
+          "help": "VLAN 编号（1-4094）"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "cisco.port.description",
+      "syntax": "description {description}",
+      "aliases": [
+        "desc"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "配置端口描述",
+      "handler": "set_port_description",
+      "args": [
+        {
+          "name": "description",
+          "type": "word",
+          "required": true,
+          "help": "端口描述文本"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "cisco.port.power_inline",
+      "syntax": "power inline {state}",
+      "aliases": [
+        "power in"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "设置端口 PoE 供电状态",
+      "handler": "set_port_poe",
+      "args": [
+        {
+          "name": "state",
+          "type": "enum",
+          "values": [
+            "auto",
+            "never",
+            "static"
+          ],
+          "required": true,
+          "help": "PoE 状态：auto/never/static"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "cisco.port.ip_address",
+      "syntax": "ip address {prefix}",
+      "aliases": [
+        "ip add"
+      ],
+      "modes": [
+        "interface"
+      ],
+      "help": "配置接口 IP 地址",
+      "handler": "set_ip_address",
+      "args": [
+        {
+          "name": "prefix",
+          "type": "prefix",
+          "required": true,
+          "help": "IP 地址/掩码长度"
+        },
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为当前接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "cisco.port.clear_counters",
+      "syntax": "clear counters [{interface}]",
+      "aliases": [
+        "clear cou",
+        "clear counters int"
+      ],
+      "modes": [
+        "privileged"
+      ],
+      "help": "清空端口计数",
+      "handler": "clear_counters",
+      "args": [
+        {
+          "name": "interface",
+          "type": "interface",
+          "required": false,
+          "help": "接口名称，缺省为全部接口"
+        }
+      ],
+      "output": []
+    },
+    {
+      "id": "cisco.net.ping",
+      "syntax": "ping {ipv4} [repeat {count}]",
+      "aliases": [
+        "pi"
+      ],
+      "modes": [
+        "user",
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "测试到目标地址的连通性",
+      "handler": "ping",
+      "args": [
+        {
+          "name": "ipv4",
+          "type": "ipv4",
+          "required": true,
+          "help": "目标 IPv4 地址"
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "required": false,
+          "help": "发送报文个数，缺省为 5"
+        }
+      ],
+      "output": [
+        "Type escape sequence to abort.",
+        "Sending 5, 100-byte ICMP Echos to {ipv4}, timeout is 2 seconds:",
+        "{ping_result}"
+      ]
+    },
+    {
+      "id": "cisco.cfg.write_memory",
+      "syntax": "write memory",
+      "aliases": [
+        "wr",
+        "write mem"
+      ],
+      "modes": [
+        "privileged"
+      ],
+      "help": "保存当前配置到 startup-config",
+      "handler": "save_config",
+      "args": [],
+      "confirm": "save",
+      "output": [
+        "Building configuration..."
+      ]
+    },
+    {
+      "id": "cisco.cfg.copy_run_start",
+      "syntax": "copy running-config startup-config",
+      "aliases": [
+        "copy run start",
+        "copy running start"
+      ],
+      "modes": [
+        "privileged"
+      ],
+      "help": "保存当前配置到 startup-config",
+      "handler": "save_config",
+      "args": [],
+      "confirm": "save",
+      "output": []
+    },
+    {
+      "id": "cisco.sys.reload",
+      "syntax": "reload",
+      "aliases": [
+        "rel"
+      ],
+      "modes": [
+        "privileged"
+      ],
+      "help": "重启设备",
+      "handler": "reboot",
+      "args": [],
+      "confirm": "reboot",
+      "output": []
+    },
+    {
+      "id": "cisco.sys.erase_startup",
+      "syntax": "erase startup-config",
+      "aliases": [
+        "erase start"
+      ],
+      "modes": [
+        "privileged"
+      ],
+      "help": "清除启动配置（恢复出厂）",
+      "handler": "factory_reset",
+      "args": [],
+      "confirm": "factory_reset",
+      "output": [
+        "Erasing the nvram filesystem will remove all configuration files! Continue? [confirm]"
+      ]
+    },
+    {
+      "id": "cisco.sys.write_erase",
+      "syntax": "write erase",
+      "aliases": [
+        "wr er"
+      ],
+      "modes": [
+        "privileged"
+      ],
+      "help": "清除启动配置（恢复出厂）",
+      "handler": "factory_reset",
+      "args": [],
+      "confirm": "factory_reset",
+      "output": [
+        "Erasing the nvram filesystem will remove all configuration files! Continue? [confirm]"
+      ]
+    },
+    {
+      "id": "cisco.help.question",
+      "syntax": "?",
+      "aliases": [],
+      "modes": [
+        "user",
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "显示当前模式下可用命令",
+      "handler": "show_help",
+      "args": [],
+      "output": [
+        "{help_text}"
+      ],
+      "hidden": true
+    },
+    {
+      "id": "cisco.help.help",
+      "syntax": "help",
+      "aliases": [
+        "hel"
+      ],
+      "modes": [
+        "user",
+        "privileged",
+        "config",
+        "interface",
+        "vlan"
+      ],
+      "help": "显示当前模式下可用命令",
+      "handler": "show_help",
+      "args": [],
+      "output": [
+        "{help_text}"
+      ]
+    }
+  ],
+  "status_text": {
+    "phy_up": "connected",
+    "phy_down": "notconnect",
+    "phy_admin_down": "disabled",
+    "protocol_up": "up",
+    "protocol_down": "down",
+    "speed": {
+      "10": "10",
+      "100": "100",
+      "1000": "1000",
+      "10000": "10G",
+      "auto": "auto"
+    },
+    "duplex": {
+      "full": "a-full",
+      "half": "half",
+      "auto": "auto"
+    },
+    "type": {
+      "rj45": "10/100/1000BaseTX",
+      "sfp": "10GBase-SR"
+    },
+    "poe": {
+      "enabled": "on",
+      "disabled": "off"
+    },
+    "vlan_untagged": "static",
+    "vlan_tagged": "tagged"
+  },
+  "tables": {
+    "interface_brief_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "short_name",
+          "header": "Port",
+          "width": 10,
+          "align": "left"
+        },
+        {
+          "key": "description",
+          "header": "Name",
+          "width": 18,
+          "align": "left"
+        },
+        {
+          "key": "phy_text",
+          "header": "Status",
+          "width": 12,
+          "align": "left"
+        },
+        {
+          "key": "vlan_text",
+          "header": "Vlan",
+          "width": 8,
+          "align": "left"
+        },
+        {
+          "key": "duplex_text",
+          "header": "Duplex",
+          "width": 8,
+          "align": "left"
+        },
+        {
+          "key": "speed_text",
+          "header": "Speed",
+          "width": 7,
+          "align": "left"
+        },
+        {
+          "key": "type_text",
+          "header": "Type",
+          "width": 16,
+          "align": "left"
+        }
+      ],
+      "empty_text": ""
+    },
+    "vlan_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "vlan_id",
+          "header": "VLAN",
+          "width": 6,
+          "align": "left"
+        },
+        {
+          "key": "status_text",
+          "header": "Status",
+          "width": 9,
+          "align": "left"
+        },
+        {
+          "key": "member_ports",
+          "header": "Ports",
+          "width": 60,
+          "align": "left"
+        }
+      ],
+      "empty_text": "--"
+    },
+    "mac_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "vlan_id",
+          "header": "Vlan",
+          "width": 8,
+          "align": "left"
+        },
+        {
+          "key": "mac_address",
+          "header": "Mac Address",
+          "width": 18,
+          "align": "left"
+        },
+        {
+          "key": "type_text",
+          "header": "Type",
+          "width": 12,
+          "align": "left"
+        },
+        {
+          "key": "port_name",
+          "header": "Ports",
+          "width": 16,
+          "align": "left"
+        }
+      ],
+      "empty_text": "--"
+    },
+    "arp_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "ip_address",
+          "header": "Address",
+          "width": 16,
+          "align": "left"
+        },
+        {
+          "key": "expire_text",
+          "header": "Age (min)",
+          "width": 10,
+          "align": "right"
+        },
+        {
+          "key": "mac_address",
+          "header": "Hardware Addr",
+          "width": 18,
+          "align": "left"
+        },
+        {
+          "key": "type_text",
+          "header": "Type",
+          "width": 8,
+          "align": "left"
+        },
+        {
+          "key": "interface",
+          "header": "Interface",
+          "width": 16,
+          "align": "left"
+        }
+      ],
+      "empty_text": "--"
+    },
+    "route_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "destination",
+          "header": "Destination",
+          "width": 16,
+          "align": "left"
+        },
+        {
+          "key": "mask",
+          "header": "Mask",
+          "width": 16,
+          "align": "left"
+        },
+        {
+          "key": "protocol_text",
+          "header": "Proto",
+          "width": 8,
+          "align": "left"
+        },
+        {
+          "key": "preference",
+          "header": "Pre",
+          "width": 5,
+          "align": "right"
+        },
+        {
+          "key": "nexthop",
+          "header": "NextHop",
+          "width": 16,
+          "align": "left"
+        },
+        {
+          "key": "interface",
+          "header": "Interface",
+          "width": 16,
+          "align": "left"
+        }
+      ],
+      "empty_text": "--"
+    },
+    "lldp_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "system_name",
+          "header": "Device ID",
+          "width": 20,
+          "align": "left"
+        },
+        {
+          "key": "chassis_id",
+          "header": "Chassis ID",
+          "width": 20,
+          "align": "left"
+        },
+        {
+          "key": "port_id",
+          "header": "Port ID",
+          "width": 16,
+          "align": "left"
+        },
+        {
+          "key": "ttl",
+          "header": "Hold-time",
+          "width": 10,
+          "align": "right"
+        },
+        {
+          "key": "capability",
+          "header": "Capability",
+          "width": 12,
+          "align": "left"
+        }
+      ],
+      "empty_text": "--"
+    },
+    "poe_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "short_name",
+          "header": "Interface",
+          "width": 16,
+          "align": "left"
+        },
+        {
+          "key": "poe_text",
+          "header": "Admin",
+          "width": 10,
+          "align": "left"
+        },
+        {
+          "key": "power_text",
+          "header": "Power(W)",
+          "width": 10,
+          "align": "right"
+        },
+        {
+          "key": "current_text",
+          "header": "Current(mA)",
+          "width": 12,
+          "align": "right"
+        },
+        {
+          "key": "voltage_text",
+          "header": "Voltage(V)",
+          "width": 11,
+          "align": "right"
+        },
+        {
+          "key": "class_text",
+          "header": "Class",
+          "width": 7,
+          "align": "left"
+        }
+      ],
+      "empty_text": "--"
+    },
+    "counters_table": {
+      "header_lines": [],
+      "columns": [
+        {
+          "key": "short_name",
+          "header": "Port",
+          "width": 10,
+          "align": "left"
+        },
+        {
+          "key": "rx_pkts",
+          "header": "InPackets",
+          "width": 12,
+          "align": "right"
+        },
+        {
+          "key": "tx_pkts",
+          "header": "OutPackets",
+          "width": 12,
+          "align": "right"
+        },
+        {
+          "key": "in_errors",
+          "header": "InErrors",
+          "width": 10,
+          "align": "right"
+        },
+        {
+          "key": "out_errors",
+          "header": "OutErrors",
+          "width": 10,
+          "align": "right"
+        },
+        {
+          "key": "crc",
+          "header": "CRC",
+          "width": 8,
+          "align": "right"
+        }
+      ],
+      "empty_text": "--"
+    }
+  },
+  "phrases": {
+    "mode": {
+      "access": "switchport mode access",
+      "trunk": "switchport mode trunk"
+    },
+    "access_vlan": "switchport access vlan {vlan}",
+    "trunk_vlans": "switchport trunk allowed vlan {vlans}",
+    "ip_address": "ip address {ip} {mask}",
+    "poe_on": "power inline auto",
+    "no_shutdown": "no shutdown",
+    "shutdown": "shutdown"
+  },
+  "config_render": {
+    "header": [
+      "Building configuration...",
+      "",
+      "!",
+      "version {os_version}",
+      "!",
+      "hostname {hostname}",
+      "!"
+    ],
+    "vlan": [
+      "vlan {vlan}",
+      " name {vlan_name}",
+      "!"
+    ],
+    "vlan_interface": [
+      "interface Vlan{vlan}",
+      " ip address {ip} {mask}",
+      " no shutdown",
+      " !"
+    ],
+    "interface": [
+      "interface {interface}",
+      " {mode_phrase}",
+      "?description  description {description}",
+      " {vlan_phrase}",
+      "?ip  {ip_phrase}",
+      "?poe  {poe_phrase}",
+      " {shutdown_phrase}",
+      " !"
+    ],
+    "footer": [
+      "!",
+      "end"
+    ]
+  },
+  "text_templates": {
+    "ping_result": [
+      "Type escape sequence to abort.",
+      "Reply to request {seq} from {ip}: time={rtt} ms"
+    ],
+    "log_prefix": "%{date}: %{hostname}: "
+  }
+}

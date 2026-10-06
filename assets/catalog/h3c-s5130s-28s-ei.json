@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "h3c-s5130s-28s-ei",
+  "vendor_id": "h3c",
+  "device_type": "switch",
+  "display_name": "新华三 S5130S-28S-EI",
+  "product_name": "S5130S-28S-EI",
+  "device_class": "千兆接入交换机",
+  "os_version": "Comware Software, Version 7.1.070, Release 3506P02",
+  "serial_prefix": "219801",
+  "visual": {
+    "chassis": { "width": 4.42, "height": 0.44, "depth": 2.20, "u_height": 1 },
+    "silkscreen": { "brand_line": "H3C S5130S-28S-EI", "sub_line": "24×GE + 4×10G SFP+" },
+    "front_panel": { "power_button": false, "console": "RJ45", "usb": false, "reset_pinhole": true, "mode_button": false },
+    "port_layout": [
+      {
+        "group_id": "ge",
+        "kind": "rj45",
+        "label": "24×10/100/1000BASE-T",
+        "speed_bps": 1000000000,
+        "poe": false,
+        "naming": { "name_prefix": "GigabitEthernet1/0/", "short_prefix": "GE1/0/", "alias_prefix": "GigabitEthernet1/0/" },
+        "rows": [ { "start_index": 1, "count": 12 }, { "start_index": 13, "count": 12 } ]
+      },
+      {
+        "group_id": "xg",
+        "kind": "sfp",
+        "label": "4×10G SFP+",
+        "speed_bps": 10000000000,
+        "poe": false,
+        "naming": { "name_prefix": "Ten-GigabitEthernet1/0/", "short_prefix": "XGE1/0/", "alias_prefix": "Ten-GigabitEthernet1/0/" },
+        "rows": [ { "start_index": 25, "count": 4 } ]
+      }
+    ],
+    "leds": { "per_port": 1, "system_label": "SYS", "power_label": "PWR", "speed_label": "SPD" },
+    "airflow": "front-to-back"
+  },
+  "port_overrides": [
+    { "short_name": "XGE1/0/25", "note": "10G SFP+ 上行光口，序号延续电口编号" }
+  ],
+  "runtime": {
+    "type": "simulated",
+    "profile": "h3c-comware-switch",
+    "capabilities": ["power", "link", "console", "cold_snapshot", "vlan", "lldp"]
+  },
+  "features": ["vlan", "stp", "lldp", "static-route", "acl", "dhcp-snooping", "qos"]
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "cisco-c2960x-24ts-l",
+  "vendor_id": "cisco",
+  "device_type": "switch",
+  "display_name": "思科 Catalyst 2960X-24TS-L",
+  "product_name": "Catalyst 2960X-24TS-L",
+  "device_class": "千兆接入交换机",
+  "os_version": "IOS 15.2(4)E7",
+  "serial_prefix": "FDO23",
+  "visual": {
+    "chassis": { "width": 4.42, "height": 0.44, "depth": 2.20, "u_height": 1 },
+    "silkscreen": { "brand_line": "CISCO Catalyst 2960X-24TS-L", "sub_line": "24×GE + 2×SFP" },
+    "front_panel": { "power_button": false, "console": "RJ45/Mini-USB", "usb": true, "reset_pinhole": true, "mode_button": true },
+    "port_layout": [
+      {
+        "group_id": "ge",
+        "kind": "rj45",
+        "label": "24×10/100/1000BASE-T",
+        "speed_bps": 1000000000,
+        "poe": false,
+        "naming": { "name_prefix": "GigabitEthernet1/0/", "short_prefix": "Gi1/0/", "alias_prefix": "GigabitEthernet1/0/" },
+        "rows": [ { "start_index": 1, "count": 12 }, { "start_index": 13, "count": 12 } ]
+      },
+      {
+        "group_id": "sfp",
+        "kind": "sfp",
+        "label": "2×SFP 上行光口",
+        "speed_bps": 1000000000,
+        "poe": false,
+        "naming": { "name_prefix": "GigabitEthernet1/0/", "short_prefix": "Gi1/0/", "alias_prefix": "GigabitEthernet1/0/" },
+        "rows": [ { "start_index": 25, "count": 2 } ]
+      }
+    ],
+    "leds": { "per_port": 1, "system_label": "SYST", "power_label": "PWR", "speed_label": "SPD" },
+    "airflow": "front-to-back"
+  },
+  "port_overrides": [
+    { "short_name": "Gi1/0/25", "note": "SFP 上行光口，序号延续电口编号（仍为千兆）" }
+  ],
+  "runtime": {
+    "type": "simulated",
+    "profile": "cisco-ios-switch",
+    "capabilities": ["power", "link", "console", "cold_snapshot", "vlan", "lldp"]
+  },
+  "features": ["vlan", "stp", "lldp", "static-route", "acl", "dhcp-snooping", "qos"]
+}

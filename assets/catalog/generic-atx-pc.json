@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "generic-atx-pc",
+  "vendor_id": "generic",
+  "device_type": "pc",
+  "display_name": "通用 x86_64 教学 PC",
+  "product_name": "Generic ATX Teaching PC",
+  "device_class": "个人计算机（真实桌面）",
+  "os_version": "Ubuntu 24.04 LTS",
+  "serial_prefix": "PC2601",
+  "visual": {
+    "chassis": { "width": 6.4, "height": 4.6, "depth": 4.8, "u_height": 0 },
+    "silkscreen": { "brand_line": "SIMLAB PC", "sub_line": "x86_64 WORKSTATION" },
+    "front_panel": { "power_button": true, "console": false, "usb": true },
+    "port_layout": [
+      {
+        "group_id": "eth",
+        "kind": "rj45",
+        "label": "1×GE",
+        "speed_bps": 1000000000,
+        "poe": false,
+        "naming": {
+          "name_prefix": "eth",
+          "short_prefix": "eth",
+          "alias_prefix": "eth"
+        },
+        "rows": [{ "start_index": 0, "count": 1 }]
+      }
+    ],
+    "leds": { "per_port": 1, "system_label": "PWR", "power_label": "HDD" }
+  },
+  "runtime": {
+    "type": "qemu",
+    "profile": "linux-cloud-profile-v1",
+    "capabilities": ["power", "link", "console", "vnc"],
+    "virtualization": {
+      "engine": "qemu-kvm",
+      "machine": "x86_64",
+      "image": "ubuntu-noble-20260725",
+      "console": "vnc",
+      "snapshot": false,
+      "notes": "可绑定资源池中的宿主已有虚拟机，或按前端指定资源通过受限 Host Agent 创建；显示器使用 noVNC。"
+    }
+  },
+  "features": ["ethernet", "vnc-desktop", "guest-agent"]
+}

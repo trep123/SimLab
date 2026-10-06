@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://simlab.local/schemas/command.schema.json",
+  "title": "SimLab Command",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "command_id", "type", "expected_config_revision", "payload"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "command_id": {"type": "string", "format": "uuid"},
+    "type": {
+      "type": "string",
+      "enum": [
+        "device.create", "device.update", "device.delete", "device.move", "device.power_on",
+        "device.shutdown", "device.force_off", "device.restart", "device.reset",
+        "cable.connect", "cable.disconnect", "snapshot.create_cold", "snapshot.restore_cold",
+        "fault.inject", "fault.clear"
+      ]
+    },
+    "expected_config_revision": {"type": "integer", "minimum": 0},
+    "payload": {"type": "object"}
+  }
+}

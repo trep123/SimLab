@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "vendor_id": "ruijie",
+  "display_name": "锐捷 Ruijie",
+  "display_name_en": "Ruijie",
+  "os_family": "RGOS",
+  "os_version": "RGOS 11.4(1)B70P1",
+  "cli_profile_id": "ruijie-rgos",
+  "brand": {
+    "chassis_color": "#33373c",
+    "chassis_dark_color": "#1e2126",
+    "faceplate_color": "#101317",
+    "logo_text": "Ruijie",
+    "logo_color": "#00a651",
+    "accent_color": "#00a651",
+    "led_scheme": "rgos",
+    "silkscreen_font": "sans-serif"
+  },
+  "prompt": {
+    "user": "{hostname}>",
+    "privileged": "{hostname}#",
+    "config": "{hostname}(config)#",
+    "interface": "{hostname}(config-if-{interface})#",
+    "vlan": "{hostname}(config-vlan{vlan})#"
+  },
+  "boot_log": [
+    "RGOS Boot Loader Version 1.3.9",
+    "Copyright (c) 2000-2024 Ruijie Networks Co., Ltd.",
+    "CPU: MIPS 24Kc 800MHz, L1 Cache: 32KB, L2 Cache: 256KB",
+    "DDR2 SDRAM: 512MB, Flash: 32MB",
+    "Press Ctrl+B to enter BootROM menu... 0",
+    "Loading RGOS image from flash:/rgos.bin ...",
+    "Uncompressing image ... Done.",
+    "Starting RGOS ...",
+    "Ruijie Networks {os_version}, Release(07161218)",
+    "Copyright (c) 2000-2024 Ruijie Networks Co., Ltd.",
+    "{product_name} uptime is 0 day 0 hour 1 minute 5 seconds",
+    "System serial number: {serial_number}",
+    "Memory: 512MB, Flash: 32MB, CPLD Version: 1.2",
+    "Slot 0: {model}, 28 ports detected",
+    "Port initialization: 28 ports self-test ... Done",
+    "System initialization complete."
+  ],
+  "messages": {
+    "unknown_command": "% Invalid input detected at '^' marker.",
+    "incomplete_command": "% Incomplete command.",
+    "ambiguous_command": "% Ambiguous command.",
+    "wrong_parameter": "% Invalid input detected at '^' marker.",
+    "permission_denied": "% Permission denied.",
+    "config_saved": "Building configuration...\n[OK]",
+    "save_confirm": "Destination filename [startup-config]?",
+    "reboot_confirm": "Reload system?[yes/no]:",
+    "reboot_started": "%SYS-5-RELOAD: Reload command is being processed, the system will reboot.",
+    "counter_cleared": "Clear counters successfully.",
+    "poe_enabled": "%POE-6-PSEPORTON: PoE is enabled on the interface.",
+    "interface_not_found": "% Invalid interface name."
+  },
+  "confirm_words": {
+    "yes": ["y", "yes"],
+    "no": ["n", "no"]
+  },
+  "led_legend": {
+    "link_up": "常亮/闪烁 绿色",
+    "link_down": "熄灭",
+    "poe": "常亮 黄色（PoE 供电中）",
+    "error": "常亮 红色"
+  }
+}

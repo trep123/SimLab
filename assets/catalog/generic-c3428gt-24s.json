@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "generic-c3428gt-24s",
+  "vendor_id": "generic",
+  "device_type": "switch",
+  "display_name": "通用 C3428GT-24S",
+  "product_name": "C3428GT-24S",
+  "device_class": "千兆 PoE 接入交换机",
+  "os_version": "NOS 1.0.0",
+  "serial_prefix": "GN2240",
+  "visual": {
+    "chassis": { "width": 4.42, "height": 0.44, "depth": 2.20, "u_height": 1 },
+    "silkscreen": { "brand_line": "NETLAB C3428GT-24S", "sub_line": "24×GE (12×PoE) + 4×10GE SFP+" },
+    "front_panel": { "power_button": false, "console": "RJ45", "usb": true, "reset_pinhole": true, "mode_button": true },
+    "port_layout": [
+      {
+        "group_id": "ge-poe",
+        "kind": "rj45",
+        "label": "12×10/100/1000BASE-T PoE",
+        "speed_bps": 1000000000,
+        "poe": true,
+        "naming": { "name_prefix": "GigabitEthernet0/0/", "short_prefix": "GE0/0/", "alias_prefix": "Gi0/0/" },
+        "rows": [ { "start_index": 1, "count": 12 } ]
+      },
+      {
+        "group_id": "ge",
+        "kind": "rj45",
+        "label": "12×10/100/1000BASE-T（无 PoE）",
+        "speed_bps": 1000000000,
+        "poe": false,
+        "naming": { "name_prefix": "GigabitEthernet0/0/", "short_prefix": "GE0/0/", "alias_prefix": "Gi0/0/" },
+        "rows": [ { "start_index": 13, "count": 12 } ]
+      },
+      {
+        "group_id": "xg",
+        "kind": "sfp",
+        "label": "4×10GE SFP+",
+        "speed_bps": 10000000000,
+        "poe": false,
+        "naming": { "name_prefix": "TenGigabitEthernet0/0/", "short_prefix": "Te0/0/", "alias_prefix": "TenGi0/0/" },
+        "rows": [ { "start_index": 1, "count": 2 }, { "start_index": 3, "count": 2 } ]
+      }
+    ],
+    "leds": { "per_port": 1, "system_label": "SYS", "power_label": "PWR", "speed_label": "SPD" },
+    "airflow": "front-to-back"
+  },
+  "port_overrides": [
+    { "short_name": "GE0/0/1", "note": "PoE 供电口（仅前 12 口支持 PoE）" },
+    { "short_name": "GE0/0/13", "note": "非 PoE 普通千兆电口" },
+    { "short_name": "Te0/0/1", "note": "10GE SFP+ 上行光口" }
+  ],
+  "runtime": {
+    "type": "simulated",
+    "profile": "generic-nos-switch",
+    "capabilities": ["power", "link", "console", "cold_snapshot", "poe", "vlan", "lldp"]
+  },
+  "features": ["vlan", "stp", "lldp", "poe", "static-route", "acl", "dhcp-snooping", "qos"]
+}

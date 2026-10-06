@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "vendor_id": "huawei",
+  "display_name": "华为 Huawei",
+  "display_name_en": "Huawei",
+  "os_family": "VRP",
+  "os_version": "VRP V200R019C10SPC500",
+  "cli_profile_id": "huawei-vrp",
+  "brand": {
+    "chassis_color": "#c9ced6",
+    "chassis_dark_color": "#9aa2ac",
+    "faceplate_color": "#23272e",
+    "logo_text": "HUAWEI",
+    "logo_color": "#cf0a2c",
+    "accent_color": "#cf0a2c",
+    "led_scheme": "vrp",
+    "silkscreen_font": "sans-serif"
+  },
+  "prompt": {
+    "user": "<{hostname}>",
+    "config": "[{hostname}]",
+    "interface": "[{hostname}-{interface}]",
+    "vlan": "[{hostname}-vlan{vlan}]"
+  },
+  "boot_log": [
+    "BootROM  V200 (HUAWEI {product_name})",
+    "Copyright (C) 2012-2024 Huawei Technologies Co., Ltd. All rights reserved.",
+    "CPU: HiSilicon SD5xxx, 1200MHz, L1 Cache: 32KB, L2 Cache: 1024KB",
+    "DDR4 SDRAM: 2048MB, Flash: 1024MB, CPLD Version: 105",
+    "Press CTRL+B to enter BootROM menu... 0",
+    "Loading software from flash:/{model}.cc ...",
+    "Decompressing... Done.",
+    "Huawei Versatile Routing Platform Software",
+    "VRP (R) software, Version {os_version}",
+    "Copyright (C) 2012-2024 Huawei Technologies Co., Ltd.",
+    "HUAWEI {product_name} uptime is 0 day, 0 hour, 1 minute",
+    "SDRAM: 2048 M bytes, Flash: 1024 M bytes",
+    "Slot 0: {model} with 1 CPU, self-test passed",
+    "Port initialization: PHY self-test passed, all ports are ready",
+    "System initialization completed. Serial number: {serial_number}"
+  ],
+  "messages": {
+    "unknown_command": "Error: Unrecognized command found at '^' position.",
+    "incomplete_command": "Error: Incomplete command found at '^' position.",
+    "ambiguous_command": "Error: Ambiguous command found at '^' position.",
+    "wrong_parameter": "Error: Wrong parameter found at '^' position.",
+    "permission_denied": "Error: You do not have permission to run the command.",
+    "config_saved": "Info: The current configuration is saved to the device successfully.",
+    "save_confirm": "Are you sure to continue? [Y/N]:",
+    "reboot_confirm": "Warning: All the configuration will be saved to the configuration file for the next startup, Continue? [Y/N]:",
+    "reboot_started": "Info: The system is now starting to reboot...",
+    "counter_cleared": "Info: The counters of the specified interface are cleared.",
+    "poe_enabled": "Info: PoE is enabled on the interface.",
+    "interface_not_found": "Error: The interface does not exist."
+  },
+  "confirm_words": {
+    "yes": ["y", "yes"],
+    "no": ["n", "no"]
+  },
+  "led_legend": {
+    "link_up": "常亮/闪烁 绿色",
+    "link_down": "熄灭",
+    "poe": "常亮 黄色（PoE 供电中）",
+    "error": "常亮 红色"
+  }
+}

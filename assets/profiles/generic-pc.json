@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.1",
+  "model_id": "generic-atx-pc",
+  "release_version": "1.1.0",
+  "device_type": "pc",
+  "name": "通用 x86_64 教学 PC",
+  "visual": {
+    "asset_id": null,
+    "units": "meter",
+    "anchors": {"eth0": "PORT_ETH_01", "power0": "PORT_POWER_01", "display0": "PORT_DISPLAY_01"}
+  },
+  "ports": [
+    {"port_key": "eth0", "connector_type": "RJ45", "role": "bidirectional", "protocol": "ethernet", "speed_bps": 1000000000},
+    {"port_key": "power0", "connector_type": "IEC_C13", "role": "sink", "protocol": "power"},
+    {"port_key": "display0", "connector_type": "HDMI", "role": "source", "protocol": "display"}
+  ],
+  "slots": [
+    {"slot_key": "cpu_socket", "kind": "cpu", "accepted_socket": ["teaching-x86-socket"]},
+    {"slot_key": "ram0", "kind": "ram", "accepted_memory_type": ["teaching-ddr4"]},
+    {"slot_key": "disk0", "kind": "disk", "accepted_bus": ["virtio"]}
+  ],
+  "runtime_profiles": [{"role": "guest_os", "backend": "qemu", "profile_release_id": "linux-cloud-profile-v1"}],
+  "fidelity": {"assembly": "rule_model", "cpu_resources": "guest_observed", "gpu_performance": "virtual_adapter", "power": "teaching_estimate"}
+}

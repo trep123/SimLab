@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "ruijie-rg-rsr20-x-28",
+  "vendor_id": "ruijie",
+  "device_type": "router",
+  "display_name": "锐捷 RG-RSR20-X-28",
+  "product_name": "RG-RSR20-X-28",
+  "device_class": "企业级多业务路由器",
+  "os_version": "RGOS 11.4(1)B70P1",
+  "serial_prefix": "221800",
+  "visual": {
+    "chassis": { "width": 4.42, "height": 0.44, "depth": 2.40, "u_height": 1 },
+    "silkscreen": { "brand_line": "Ruijie RG-RSR20-X-28", "sub_line": "4×GE Combo WAN + 24×GE LAN" },
+    "front_panel": { "power_button": true, "console": "RJ45", "usb": true, "reset_pinhole": true, "mode_button": false },
+    "port_layout": [
+      {
+        "group_id": "wan",
+        "kind": "combo",
+        "label": "4×GE Combo WAN（光电复用）",
+        "speed_bps": 1000000000,
+        "poe": false,
+        "naming": { "name_prefix": "GigabitEthernet 0/", "short_prefix": "Gi0/", "alias_prefix": "GigabitEthernet0/" },
+        "rows": [ { "start_index": 0, "count": 4 } ]
+      },
+      {
+        "group_id": "lan",
+        "kind": "rj45",
+        "label": "24×GE LAN 交换口",
+        "speed_bps": 1000000000,
+        "poe": false,
+        "naming": { "name_prefix": "GigabitEthernet 0/", "short_prefix": "Gi0/", "alias_prefix": "GigabitEthernet0/" },
+        "rows": [ { "start_index": 4, "count": 12 }, { "start_index": 16, "count": 12 } ]
+      }
+    ],
+    "leds": { "per_port": 1, "system_label": "SYS", "power_label": "PWR", "speed_label": "SPD" },
+    "airflow": "side-to-side"
+  },
+  "port_overrides": [
+    { "short_name": "Gi0/0", "note": "GE Combo WAN 口，RJ45 与 SFP 光电复用" },
+    { "short_name": "Gi0/1", "note": "GE Combo WAN 口，RJ45 与 SFP 光电复用" },
+    { "short_name": "Gi0/2", "note": "GE Combo WAN 口，RJ45 与 SFP 光电复用" },
+    { "short_name": "Gi0/3", "note": "GE Combo WAN 口，RJ45 与 SFP 光电复用" }
+  ],
+  "runtime": {
+    "type": "simulated",
+    "profile": "ruijie-rgos-router",
+    "capabilities": ["power", "link", "console", "cold_snapshot", "vlan"]
+  },
+  "features": ["vlan", "static-route", "ospf", "bgp", "nat", "dhcp-server", "acl", "vpn"]
+}

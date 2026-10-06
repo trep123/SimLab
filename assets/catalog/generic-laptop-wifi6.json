@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "1.0",
+  "model_id": "generic-laptop-wifi6",
+  "vendor_id": "generic",
+  "device_type": "laptop",
+  "display_name": "通用 Wi-Fi 6 笔记本电脑",
+  "product_name": "Generic Laptop WiFi6",
+  "device_class": "无线客户端（笔记本电脑）",
+  "os_version": "NOS-Client 1.0.0",
+  "serial_prefix": "NB2601",
+  "visual": {
+    "chassis": {
+      "width": 0.34,
+      "height": 0.22,
+      "depth": 0.24,
+      "u_height": 0
+    },
+    "silkscreen": {
+      "brand_line": "SIMLAB LAPTOP",
+      "sub_line": "Wi-Fi 6 STA"
+    },
+    "front_panel": {
+      "power_button": true,
+      "console": false,
+      "usb": true
+    },
+    "port_layout": [
+      {
+        "group_id": "eth",
+        "kind": "rj45",
+        "label": "1×GE",
+        "speed_bps": 1000000000,
+        "poe": false,
+        "naming": {
+          "name_prefix": "Ethernet0/0/",
+          "short_prefix": "ETH0/0/",
+          "alias_prefix": "Et0/0/"
+        },
+        "rows": [
+          {
+            "start_index": 1,
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "leds": {
+      "per_port": 1,
+      "system_label": "PWR",
+      "power_label": "WLAN"
+    }
+  },
+  "runtime": {
+    "type": "qemu",
+    "profile": "linux-cloud-profile-v1",
+    "capabilities": [
+      "power",
+      "link",
+      "console",
+      "vnc"
+    ],
+    "virtualization": {
+      "engine": "qemu-kvm",
+      "machine": "x86_64",
+      "image": "ubuntu-noble-20260725",
+      "console": "vnc",
+      "boot_seconds": 18,
+      "snapshot": true,
+      "notes": "笔记本以 QEMU 虚拟机运行真实操作系统，屏幕映射 noVNC，可执行真实命令与抓包"
+    }
+  },
+  "features": [
+    "wireless",
+    "wlan",
+    "dhcp-client"
+  ],
+  "wireless": {
+    "role": "sta",
+    "supported_rates_mbps": [
+      6.5,
+      13,
+      19.5,
+      26,
+      39,
+      52,
+      58.5,
+      65,
+      78,
+      104,
+      117,
+      130,
+      144.4
+    ]
+  }
+}
