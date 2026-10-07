@@ -30,12 +30,13 @@ export function expand_port_row_modules(template: DeviceTemplate): DeviceTemplat
     const origin = Array.isArray(params.origin) ? params.origin : [0, 0, 0];
     const names = Array.isArray(params.names) ? params.names.map(String) : [];
     const name_prefix = String(params.name_prefix || 'GE0/0/');
+    const column_major = params.numbering === 'column-major';
     const group_id = String(params.group_id || part.part_id);
     const expanded: PartSpec[] = [];
 
     for (let row = 0; row < rows; row += 1) {
       for (let column = 0; column < columns; column += 1) {
-        const index = row * columns + column;
+        const index = column_major ? column * rows + row : row * columns + column;
         const short_name = names[index] || `${name_prefix}${index + 1}`;
         const x = (column - (columns - 1) / 2) * pitch_x;
         const y = ((rows - 1) / 2 - row) * pitch_y;

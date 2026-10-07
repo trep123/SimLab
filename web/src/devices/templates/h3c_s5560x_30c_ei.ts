@@ -71,6 +71,7 @@ const template: DeviceTemplate = {
         connector: 'rj45',
         rows: 2,
         columns: 12,
+        numbering: 'column-major',
         pitch_x: 0.0172,
         pitch_y: 0.017,
         origin: [0.012, 0, 0.1305],

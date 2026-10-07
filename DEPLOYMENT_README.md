@@ -102,8 +102,7 @@ sudo ip link set enp2s0 up
 - Linux x86_64；
 - Python 3.12 至 3.14；
 - Node.js 22 或更高的受支持 LTS 版本；
-- PostgreSQL 17、Redis 8；
-- Nginx 1.24 或更高版本；
+- PostgreSQL、Redis 和 Nginx（由目标 Ubuntu/Debian 系统仓库提供；一键脚本不固定这些系统包的主版本）；
 - 支持 WebGL 2 的 Chromium、Chrome、Edge 或 Firefox。
 
 需要真实 PC/笔记本虚拟机时，Runtime Host 还需要 KVM、QEMU、libvirt、Open vSwitch、

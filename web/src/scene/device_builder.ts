@@ -169,11 +169,11 @@ function build_textures(manifest, vendor_profile, layout, runtime_device) {
  */
 function connector_pick_size(kind, scale) {
   const sizes = {
-    rj45: [0.0165, 0.015, 0.02],
-    sfp: [0.017, 0.013, 0.03],
-    sfp_plus: [0.018, 0.014, 0.032],
-    console: [0.014, 0.013, 0.018],
-    usb: [0.015, 0.009, 0.018]
+    rj45: [0.0165, 0.015, 0.004],
+    sfp: [0.017, 0.013, 0.004],
+    sfp_plus: [0.018, 0.014, 0.004],
+    console: [0.014, 0.013, 0.004],
+    usb: [0.015, 0.009, 0.004]
   };
   const chosen = sizes[kind] || [0.02, 0.02, 0.02];
   const ratio = scale > 0 ? scale : 1;

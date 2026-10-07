@@ -201,6 +201,7 @@ function list_param(params: Record<string, unknown>, key: string): string[] {
  * - `pitch_x` / `pitch_y`：行列间距（米）；
  * - `origin`：该行首端口中心（模板局部坐标 [x, y, z]）；
  * - `names`：端口短名列表（缺省按 `name_prefix + 序号` 生成）；
+ * - `numbering`：`row-major`（默认）或 `column-major`（双排交换机按列成对编号）；
  * - `name_prefix`：短名前缀；
  * - `group_id`：端口分组标识。
  *
@@ -218,6 +219,7 @@ function build_port_row(context: { spec: { params: Record<string, unknown> } }):
   const name_prefix = text_param(spec.params, 'name_prefix', 'GE0/0/');
   const group_id = text_param(spec.params, 'group_id', 'ports');
   const names = list_param(spec.params, 'names');
+  const column_major = spec.params.numbering === 'column-major';
   const speed_bps = number_param(spec.params, 'speed_bps', 1000000000);
   const poe = spec.params.poe === true;
   /* 面板细节开关：每口 LED 与丝印（默认开启，端口数过多时自动关闭丝印以省资源）。 */
@@ -243,7 +245,8 @@ function build_port_row(context: { spec: { params: Record<string, unknown> } }):
       jack.position.set(x, y, -jack_depth / 2 + 0.0022);
       group.add(jack);
       /* 端口下方丝印：用细长白条模拟标签（近看可读，远看是丝印）。 */
-      const short_name = names[index - 1] || name_prefix + index;
+      const name_index = column_major ? column * rows + row : index - 1;
+      const short_name = names[name_index] || name_prefix + (name_index + 1);
       /* 交换机与独立网口复用完全相同的每口状态灯和端口丝印。 */
       add_rj45_port_face(group, {
         x: x,
@@ -450,6 +453,7 @@ export const PORT_PARTS: PartDefinition[] = [
       pitch_x: { label: '列间距（米）', min: 0.008, max: 0.04, step: 0.0005 },
       pitch_y: { label: '行间距（米）', min: 0.008, max: 0.04, step: 0.0005 },
       name_prefix: { label: '端口名前缀', kind: 'text' },
+      numbering: { label: '编号顺序（row-major / column-major）', kind: 'text' },
       group_id: { label: '分组标识', kind: 'text' },
       poe: { label: '支持 PoE', kind: 'boolean' }
     },
